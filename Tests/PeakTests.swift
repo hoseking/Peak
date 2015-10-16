@@ -35,5 +35,29 @@ class PeakTests: XCTestCase {
         XCTAssertEqual(actualLength, readLength)
         XCTAssertEqual(audioFile.currentFrame, readLength)
     }
+
+    func testReadMIDI() {
+        let bundlePath = NSBundle(forClass: PeakTests.self).pathForResource("alb_esp1", ofType: "mid")
+        guard let path = bundlePath else {
+            XCTFail("Could not find midi file")
+            return
+        }
+
+        guard let midi = MIDIFile(filePath: path) else {
+            XCTFail("Could not open midi file")
+            return
+        }
+
+        let expectedChords: [[UInt8]] = [
+            [81, 57],
+            [88, 64],
+            [86, 62],
+            [88, 64]
+        ]
+
+        for i in 0..<4 {
+            XCTAssertEqual(midi.chords[i].notes.map{ $0.note }, expectedChords[i])
+        }
+    }
     
 }

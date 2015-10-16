@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		002966A11BD051110096C626 /* sin_1000Hz_-3dBFS_1s.wav in Resources */ = {isa = PBXBuildFile; fileRef = 002966A01BD051110096C626 /* sin_1000Hz_-3dBFS_1s.wav */; };
 		002966BF1BD052340096C626 /* Peak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005809451BD04F2700B164F6 /* Peak.framework */; };
 		004549A51BD0530000AC387F /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005809641BD050AE00B164F6 /* AudioFile.swift */; };
 		004549A61BD0530000AC387F /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005809651BD050AE00B164F6 /* Microphone.swift */; };
 		004549A71BD0533400AC387F /* Peak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0045498D1BD052B100AC387F /* Peak.framework */; };
-		004549A91BD053CD00AC387F /* sin_1000Hz_-3dBFS_1s.wav in Resources */ = {isa = PBXBuildFile; fileRef = 002966A01BD051110096C626 /* sin_1000Hz_-3dBFS_1s.wav */; };
 		004549AC1BD054E300AC387F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004549AB1BD054E300AC387F /* AudioToolbox.framework */; };
 		004549AE1BD054EA00AC387F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004549AD1BD054EA00AC387F /* AudioToolbox.framework */; };
 		004549B11BD0575500AC387F /* Peak.h in Headers */ = {isa = PBXBuildFile; fileRef = 004549B01BD0575500AC387F /* Peak.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -21,6 +19,16 @@
 		004549B51BD0576700AC387F /* PeakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004549B31BD0576700AC387F /* PeakTests.swift */; settings = {ASSET_TAGS = (); }; };
 		005809661BD050AE00B164F6 /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005809641BD050AE00B164F6 /* AudioFile.swift */; };
 		005809671BD050AE00B164F6 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005809651BD050AE00B164F6 /* Microphone.swift */; };
+		00EFE8D71BD1A7A100FF769B /* MIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D41BD1A7A100FF769B /* MIDIEvent.swift */; settings = {ASSET_TAGS = (); }; };
+		00EFE8D81BD1A7A100FF769B /* MIDIFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D51BD1A7A100FF769B /* MIDIFile.swift */; settings = {ASSET_TAGS = (); }; };
+		00EFE8D91BD1A7A100FF769B /* MusicTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D61BD1A7A100FF769B /* MusicTrack.swift */; settings = {ASSET_TAGS = (); }; };
+		00EFE8DA1BD1A7C000FF769B /* MIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D41BD1A7A100FF769B /* MIDIEvent.swift */; settings = {ASSET_TAGS = (); }; };
+		00EFE8DB1BD1A7C300FF769B /* MIDIFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D51BD1A7A100FF769B /* MIDIFile.swift */; settings = {ASSET_TAGS = (); }; };
+		00EFE8DC1BD1A7C300FF769B /* MusicTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D61BD1A7A100FF769B /* MusicTrack.swift */; settings = {ASSET_TAGS = (); }; };
+		00EFE8E61BD1A83200FF769B /* alb_esp1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E31BD1A81200FF769B /* alb_esp1.mid */; settings = {ASSET_TAGS = (); }; };
+		00EFE8E71BD1A83200FF769B /* sin_1000Hz_-3dBFS_1s.wav in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E51BD1A81200FF769B /* sin_1000Hz_-3dBFS_1s.wav */; settings = {ASSET_TAGS = (); }; };
+		00EFE8E81BD1A83300FF769B /* alb_esp1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E31BD1A81200FF769B /* alb_esp1.mid */; settings = {ASSET_TAGS = (); }; };
+		00EFE8E91BD1A83300FF769B /* sin_1000Hz_-3dBFS_1s.wav in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E51BD1A81200FF769B /* sin_1000Hz_-3dBFS_1s.wav */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +49,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		002966A01BD051110096C626 /* sin_1000Hz_-3dBFS_1s.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sin_1000Hz_-3dBFS_1s.wav"; sourceTree = "<group>"; };
 		0045498D1BD052B100AC387F /* Peak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Peak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		004549961BD052B200AC387F /* PeakOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeakOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		004549AB1BD054E300AC387F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -50,10 +57,15 @@
 		004549B31BD0576700AC387F /* PeakTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakTests.swift; sourceTree = "<group>"; };
 		005809451BD04F2700B164F6 /* Peak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Peak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0058094F1BD04F2700B164F6 /* PeakiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeakiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		005809601BD0507800B164F6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		005809641BD050AE00B164F6 /* AudioFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioFile.swift; sourceTree = "<group>"; };
 		005809651BD050AE00B164F6 /* Microphone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Microphone.swift; sourceTree = "<group>"; };
-		005809691BD050C400B164F6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00EFE8D41BD1A7A100FF769B /* MIDIEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIEvent.swift; sourceTree = "<group>"; };
+		00EFE8D51BD1A7A100FF769B /* MIDIFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIFile.swift; sourceTree = "<group>"; };
+		00EFE8D61BD1A7A100FF769B /* MusicTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicTrack.swift; sourceTree = "<group>"; };
+		00EFE8E11BD1A80B00FF769B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00EFE8E31BD1A81200FF769B /* alb_esp1.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = alb_esp1.mid; sourceTree = "<group>"; };
+		00EFE8E41BD1A81200FF769B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00EFE8E51BD1A81200FF769B /* sin_1000Hz_-3dBFS_1s.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "sin_1000Hz_-3dBFS_1s.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,10 +137,13 @@
 		0058095F1BD0507800B164F6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				005809601BD0507800B164F6 /* Info.plist */,
+				00EFE8E01BD1A80B00FF769B /* Resources */,
 				004549B01BD0575500AC387F /* Peak.h */,
 				005809641BD050AE00B164F6 /* AudioFile.swift */,
 				005809651BD050AE00B164F6 /* Microphone.swift */,
+				00EFE8D41BD1A7A100FF769B /* MIDIEvent.swift */,
+				00EFE8D51BD1A7A100FF769B /* MIDIFile.swift */,
+				00EFE8D61BD1A7A100FF769B /* MusicTrack.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -136,11 +151,28 @@
 		005809681BD050C400B164F6 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				005809691BD050C400B164F6 /* Info.plist */,
-				002966A01BD051110096C626 /* sin_1000Hz_-3dBFS_1s.wav */,
+				00EFE8E21BD1A81200FF769B /* Resources */,
 				004549B31BD0576700AC387F /* PeakTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		00EFE8E01BD1A80B00FF769B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				00EFE8E11BD1A80B00FF769B /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		00EFE8E21BD1A81200FF769B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				00EFE8E41BD1A81200FF769B /* Info.plist */,
+				00EFE8E31BD1A81200FF769B /* alb_esp1.mid */,
+				00EFE8E51BD1A81200FF769B /* sin_1000Hz_-3dBFS_1s.wav */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,7 +325,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				004549A91BD053CD00AC387F /* sin_1000Hz_-3dBFS_1s.wav in Resources */,
+				00EFE8E81BD1A83300FF769B /* alb_esp1.mid in Resources */,
+				00EFE8E91BD1A83300FF769B /* sin_1000Hz_-3dBFS_1s.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +341,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				002966A11BD051110096C626 /* sin_1000Hz_-3dBFS_1s.wav in Resources */,
+				00EFE8E61BD1A83200FF769B /* alb_esp1.mid in Resources */,
+				00EFE8E71BD1A83200FF769B /* sin_1000Hz_-3dBFS_1s.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +353,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00EFE8DC1BD1A7C300FF769B /* MusicTrack.swift in Sources */,
+				00EFE8DB1BD1A7C300FF769B /* MIDIFile.swift in Sources */,
+				00EFE8DA1BD1A7C000FF769B /* MIDIEvent.swift in Sources */,
 				004549A51BD0530000AC387F /* AudioFile.swift in Sources */,
 				004549A61BD0530000AC387F /* Microphone.swift in Sources */,
 			);
@@ -336,6 +373,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00EFE8D91BD1A7A100FF769B /* MusicTrack.swift in Sources */,
+				00EFE8D81BD1A7A100FF769B /* MIDIFile.swift in Sources */,
+				00EFE8D71BD1A7A100FF769B /* MIDIEvent.swift in Sources */,
 				005809661BD050AE00B164F6 /* AudioFile.swift in Sources */,
 				005809671BD050AE00B164F6 /* Microphone.swift in Sources */,
 			);
@@ -374,10 +414,9 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = Source/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.venturemedia.Peak;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
@@ -394,10 +433,9 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = Source/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.venturemedia.Peak;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
@@ -410,7 +448,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Tests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.venturemedia.PeakTests;
@@ -425,7 +463,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Tests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.venturemedia.PeakTests;
@@ -533,7 +571,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = Source/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.venturemedia.Peak;
@@ -551,7 +589,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Source/Info.plist;
+				INFOPLIST_FILE = Source/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.venturemedia.Peak;
@@ -564,7 +602,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Tests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.venturemedia.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -576,7 +614,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Tests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.venturemedia.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
