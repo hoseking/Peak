@@ -14,6 +14,7 @@ public class Microphone {
     private var sampleRate = 44100
     private var buffer: Array<Double>!
     private var bufferSize = 512
+    private var context: Microphone!
 
     private var running = false
     private var stopping = false
@@ -32,6 +33,7 @@ public class Microphone {
         self.sampleRate = sampleRate
         self.bufferSize = bufferSize
         self.buffer = Array(count: bufferSize, repeatedValue: 0)
+        self.context = self
         create()
     }
 
@@ -106,7 +108,7 @@ public class Microphone {
         checkStatus(AudioUnitSetProperty(inputUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Input, outputBus, &streamFormat, UInt32(sizeof(streamFormat.dynamicType))), "AudioUnitSetProperty stream input")
 
         // Setup input callback
-        var callbackStruct = AURenderCallbackStruct(inputProc: inputCallback, inputProcRefCon: &inputUnit)
+        var callbackStruct = AURenderCallbackStruct(inputProc: inputCallback, inputProcRefCon: &context)
         checkStatus(AudioUnitSetProperty(inputUnit, kAudioOutputUnitProperty_SetInputCallback, kAudioUnitScope_Global, inputBus, &callbackStruct, UInt32(sizeof(callbackStruct.dynamicType))), "AudioUnitSetProperty callback")
 
         // Disable buffer allocation for the recorder
