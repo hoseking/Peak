@@ -9,4 +9,5 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = "10.9"
   s.source       = { :git => "https://github.com/hoseking/Peak.git", :tag => "1.1.0" }
   s.source_files = "Source"
+  s.frameworks = "AudioToolbox"
 end
