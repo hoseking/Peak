@@ -15,20 +15,22 @@
 		004549AE1BD054EA00AC387F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004549AD1BD054EA00AC387F /* AudioToolbox.framework */; };
 		004549B11BD0575500AC387F /* Peak.h in Headers */ = {isa = PBXBuildFile; fileRef = 004549B01BD0575500AC387F /* Peak.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		004549B21BD0575500AC387F /* Peak.h in Headers */ = {isa = PBXBuildFile; fileRef = 004549B01BD0575500AC387F /* Peak.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		004549B41BD0576700AC387F /* PeakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004549B31BD0576700AC387F /* PeakTests.swift */; settings = {ASSET_TAGS = (); }; };
-		004549B51BD0576700AC387F /* PeakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004549B31BD0576700AC387F /* PeakTests.swift */; settings = {ASSET_TAGS = (); }; };
+		004549B41BD0576700AC387F /* PeakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004549B31BD0576700AC387F /* PeakTests.swift */; };
+		004549B51BD0576700AC387F /* PeakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004549B31BD0576700AC387F /* PeakTests.swift */; };
+		004FDE9D1BD9A88800161D39 /* Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004FDE9C1BD9A88800161D39 /* Buffer.swift */; };
+		004FDE9E1BD9A88800161D39 /* Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004FDE9C1BD9A88800161D39 /* Buffer.swift */; };
 		005809661BD050AE00B164F6 /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005809641BD050AE00B164F6 /* AudioFile.swift */; };
 		005809671BD050AE00B164F6 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005809651BD050AE00B164F6 /* Microphone.swift */; };
-		00EFE8D71BD1A7A100FF769B /* MIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D41BD1A7A100FF769B /* MIDIEvent.swift */; settings = {ASSET_TAGS = (); }; };
-		00EFE8D81BD1A7A100FF769B /* MIDIFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D51BD1A7A100FF769B /* MIDIFile.swift */; settings = {ASSET_TAGS = (); }; };
-		00EFE8D91BD1A7A100FF769B /* MusicTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D61BD1A7A100FF769B /* MusicTrack.swift */; settings = {ASSET_TAGS = (); }; };
-		00EFE8DA1BD1A7C000FF769B /* MIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D41BD1A7A100FF769B /* MIDIEvent.swift */; settings = {ASSET_TAGS = (); }; };
-		00EFE8DB1BD1A7C300FF769B /* MIDIFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D51BD1A7A100FF769B /* MIDIFile.swift */; settings = {ASSET_TAGS = (); }; };
-		00EFE8DC1BD1A7C300FF769B /* MusicTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D61BD1A7A100FF769B /* MusicTrack.swift */; settings = {ASSET_TAGS = (); }; };
-		00EFE8E61BD1A83200FF769B /* alb_esp1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E31BD1A81200FF769B /* alb_esp1.mid */; settings = {ASSET_TAGS = (); }; };
-		00EFE8E71BD1A83200FF769B /* sin_1000Hz_-3dBFS_1s.wav in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E51BD1A81200FF769B /* sin_1000Hz_-3dBFS_1s.wav */; settings = {ASSET_TAGS = (); }; };
-		00EFE8E81BD1A83300FF769B /* alb_esp1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E31BD1A81200FF769B /* alb_esp1.mid */; settings = {ASSET_TAGS = (); }; };
-		00EFE8E91BD1A83300FF769B /* sin_1000Hz_-3dBFS_1s.wav in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E51BD1A81200FF769B /* sin_1000Hz_-3dBFS_1s.wav */; settings = {ASSET_TAGS = (); }; };
+		00EFE8D71BD1A7A100FF769B /* MIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D41BD1A7A100FF769B /* MIDIEvent.swift */; };
+		00EFE8D81BD1A7A100FF769B /* MIDIFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D51BD1A7A100FF769B /* MIDIFile.swift */; };
+		00EFE8D91BD1A7A100FF769B /* MusicTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D61BD1A7A100FF769B /* MusicTrack.swift */; };
+		00EFE8DA1BD1A7C000FF769B /* MIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D41BD1A7A100FF769B /* MIDIEvent.swift */; };
+		00EFE8DB1BD1A7C300FF769B /* MIDIFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D51BD1A7A100FF769B /* MIDIFile.swift */; };
+		00EFE8DC1BD1A7C300FF769B /* MusicTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D61BD1A7A100FF769B /* MusicTrack.swift */; };
+		00EFE8E61BD1A83200FF769B /* alb_esp1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E31BD1A81200FF769B /* alb_esp1.mid */; };
+		00EFE8E71BD1A83200FF769B /* sin_1000Hz_-3dBFS_1s.wav in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E51BD1A81200FF769B /* sin_1000Hz_-3dBFS_1s.wav */; };
+		00EFE8E81BD1A83300FF769B /* alb_esp1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E31BD1A81200FF769B /* alb_esp1.mid */; };
+		00EFE8E91BD1A83300FF769B /* sin_1000Hz_-3dBFS_1s.wav in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E51BD1A81200FF769B /* sin_1000Hz_-3dBFS_1s.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,7 @@
 		004549AD1BD054EA00AC387F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		004549B01BD0575500AC387F /* Peak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Peak.h; sourceTree = "<group>"; };
 		004549B31BD0576700AC387F /* PeakTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakTests.swift; sourceTree = "<group>"; };
+		004FDE9C1BD9A88800161D39 /* Buffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buffer.swift; sourceTree = "<group>"; };
 		005809451BD04F2700B164F6 /* Peak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Peak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0058094F1BD04F2700B164F6 /* PeakiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeakiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		005809641BD050AE00B164F6 /* AudioFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioFile.swift; sourceTree = "<group>"; };
@@ -140,6 +143,7 @@
 				00EFE8E01BD1A80B00FF769B /* Resources */,
 				004549B01BD0575500AC387F /* Peak.h */,
 				005809641BD050AE00B164F6 /* AudioFile.swift */,
+				004FDE9C1BD9A88800161D39 /* Buffer.swift */,
 				005809651BD050AE00B164F6 /* Microphone.swift */,
 				00EFE8D41BD1A7A100FF769B /* MIDIEvent.swift */,
 				00EFE8D51BD1A7A100FF769B /* MIDIFile.swift */,
@@ -358,6 +362,7 @@
 				00EFE8DA1BD1A7C000FF769B /* MIDIEvent.swift in Sources */,
 				004549A51BD0530000AC387F /* AudioFile.swift in Sources */,
 				004549A61BD0530000AC387F /* Microphone.swift in Sources */,
+				004FDE9E1BD9A88800161D39 /* Buffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +383,7 @@
 				00EFE8D71BD1A7A100FF769B /* MIDIEvent.swift in Sources */,
 				005809661BD050AE00B164F6 /* AudioFile.swift in Sources */,
 				005809671BD050AE00B164F6 /* Microphone.swift in Sources */,
+				004FDE9D1BD9A88800161D39 /* Buffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
