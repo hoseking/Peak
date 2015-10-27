@@ -9,7 +9,7 @@ import Foundation
 
 public class Microphone {
 
-    private let sampleSize = UInt32(sizeof(Float32))
+    private let sampleSize = UInt32(sizeof(Buffer.Element.self))
     private let channels = UInt32(1)
     private var inputUnit: AudioUnit = nil
     private var sampleRate = Float64(44100)

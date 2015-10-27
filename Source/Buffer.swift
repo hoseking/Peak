@@ -10,7 +10,7 @@ import Foundation
 /// As opposed to an `Array`, assiging a `Buffer` to a new variable will not create a copy, it only creates a new reference.
 /// If any reference is modified all other references will reflect the change. To copy a `Buffer` you have to explicitly call `copy()`.
 public final class Buffer : MutableCollectionType, ArrayLiteralConvertible {
-    public typealias Element = Float32
+    public typealias Element = Double
     private var buffer: ManagedBuffer<(Int, Int), Element>
 
     public var count: Int {
