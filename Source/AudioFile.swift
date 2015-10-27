@@ -42,18 +42,19 @@ public class AudioFile {
       Create a new audio file. Currenly only single channel files are supported.
       
       - parameter filePath:   The new file path
-      - parameter type:       The type of file to create
-      - parameter sampleRate: The sample rate to use in the new file
+      - parameter type:       The type of file to create. See `AudioFileTypeID`.
+      - parameter format:     The audio format to use. See `AudioFormatID`.
+      - parameter sampleRate: The sample rate to use in the new file.
       - parameter overwrite:  Wheter to overwrite an existing file. If `false` and a file exists at the given path the return value will be nil.
       - returns: The newly created AudioFile or nil if the file couldn't be created.
      */
-    public class func create(filePath: String, type: AudioFileTypeID, sampleRate: Double, overwrite: Bool) -> AudioFile? {
+    public class func create(filePath: String, type: AudioFileTypeID, format: AudioFormatID, sampleRate: Double, overwrite: Bool) -> AudioFile? {
         var audioFileRef: ExtAudioFileRef = nil
 
         let bytesPerFrame = UInt32(sizeof(Double))
         var dataFormat = AudioStreamBasicDescription(
             mSampleRate: sampleRate,
-            mFormatID: kAudioFormatLinearPCM,
+            mFormatID: format,
             mFormatFlags: kAudioFormatFlagIsFloat | kAudioFormatFlagIsPacked | kAudioFormatFlagIsNonInterleaved,
             mBytesPerPacket: bytesPerFrame,
             mFramesPerPacket: 1,
