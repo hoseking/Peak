@@ -36,6 +36,21 @@ class PeakTests: XCTestCase {
         XCTAssertEqual(audioFile.currentFrame, readLength)
     }
 
+    func testCreateLossless() {
+        let fileName = NSProcessInfo.processInfo().globallyUniqueString + ".m4a"
+        let path = NSTemporaryDirectory() + "/" + fileName
+
+        guard let audioFile = AudioFile.createLossless(path, sampleRate: 44100, overwrite: true) else {
+            XCTFail("Failed to create lossless audio file")
+            return
+        }
+
+        XCTAssertEqual(audioFile.sampleRate, 44100)
+
+        let data = [Double](count: 1024, repeatedValue: 0.0)
+        XCTAssert(audioFile.writeFrames(data, count: 1024))
+    }
+
     func testReadMIDI() {
         let bundlePath = NSBundle(forClass: PeakTests.self).pathForResource("alb_esp1", ofType: "mid")
         guard let path = bundlePath else {

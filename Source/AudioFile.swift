@@ -10,7 +10,7 @@ import Foundation
 public class AudioFile {
     private var audioFileRef: ExtAudioFileRef = nil
     private var fileDataFormat = AudioStreamBasicDescription()
-    private var outputDataFormat = AudioStreamBasicDescription()
+    private var clientFormat = AudioStreamBasicDescription()
 
     /**
       Open an existing audio file.
@@ -51,11 +51,11 @@ public class AudioFile {
     public class func create(filePath: String, type: AudioFileTypeID, format: AudioFormatID, sampleRate: Double, overwrite: Bool) -> AudioFile? {
         var audioFileRef: ExtAudioFileRef = nil
 
-        let bytesPerFrame = UInt32(sizeof(Double))
+        let bytesPerFrame = UInt32(2)
         var dataFormat = AudioStreamBasicDescription(
             mSampleRate: sampleRate,
             mFormatID: format,
-            mFormatFlags: kAudioFormatFlagIsFloat | kAudioFormatFlagIsPacked | kAudioFormatFlagIsNonInterleaved,
+            mFormatFlags: kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked,
             mBytesPerPacket: bytesPerFrame,
             mFramesPerPacket: 1,
             mBytesPerFrame: bytesPerFrame,
@@ -83,7 +83,28 @@ public class AudioFile {
       - returns: The newly created AudioFile or nil if the file couldn't be created.
      */
     public class func createLossless(filePath: String, sampleRate: Double, overwrite: Bool) -> AudioFile? {
-        return create(filePath, type: kAudioFileM4AType, format: kAudioFormatAppleLossless, sampleRate: sampleRate, overwrite: overwrite)
+        var audioFileRef: ExtAudioFileRef = nil
+
+        var dataFormat = AudioStreamBasicDescription(
+            mSampleRate: sampleRate,
+            mFormatID: kAudioFormatMPEG4AAC,
+            mFormatFlags: 0,
+            mBytesPerPacket: 0,
+            mFramesPerPacket: 1024,
+            mBytesPerFrame: 0,
+            mChannelsPerFrame: 1,
+            mBitsPerChannel: 0,
+            mReserved: 0)
+        let dataFormatPointer = withUnsafePointer(&dataFormat) { $0 }
+        let flags = overwrite ? AudioFileFlags.EraseFile.rawValue : 0
+        let fileURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, filePath, .CFURLPOSIXPathStyle, false)
+        let createStatus = ExtAudioFileCreateWithURL(fileURL, kAudioFileM4AType, dataFormatPointer, nil, flags, &audioFileRef)
+        guard createStatus == noErr else {
+            print("Failed to create audio file '\(filePath)' with error \(createStatus)")
+            return nil
+        }
+
+        return AudioFile(audioFileRef: audioFileRef, fileDataFormat: dataFormat)
     }
 
     init(audioFileRef: ExtAudioFileRef, fileDataFormat: AudioStreamBasicDescription) {
@@ -91,7 +112,7 @@ public class AudioFile {
         self.fileDataFormat = fileDataFormat
 
         let bytesPerFrame = UInt32(sizeof(Double))
-        outputDataFormat = AudioStreamBasicDescription(
+        clientFormat = AudioStreamBasicDescription(
             mSampleRate: fileDataFormat.mSampleRate,
             mFormatID: kAudioFormatLinearPCM,
             mFormatFlags: kAudioFormatFlagIsFloat | kAudioFormatFlagIsPacked | kAudioFormatFlagIsNonInterleaved,
@@ -103,7 +124,7 @@ public class AudioFile {
             mReserved: 0)
 
         let descriptionSize = UInt32(sizeof(AudioStreamBasicDescription))
-        let setPropertyStatus = ExtAudioFileSetProperty(audioFileRef, kExtAudioFileProperty_ClientDataFormat, descriptionSize, &outputDataFormat);
+        let setPropertyStatus = ExtAudioFileSetProperty(audioFileRef, kExtAudioFileProperty_ClientDataFormat, descriptionSize, &clientFormat);
         assert(setPropertyStatus == noErr, "Failed to set audio file output data format with error \(setPropertyStatus)")
     }
 

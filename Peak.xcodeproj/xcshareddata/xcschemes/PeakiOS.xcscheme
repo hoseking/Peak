@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Peak.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0058094E1BD04F2700B164F6"
+               BuildableName = "PeakiOSTests.xctest"
+               BlueprintName = "PeakiOSTests"
+               ReferencedContainer = "container:Peak.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
