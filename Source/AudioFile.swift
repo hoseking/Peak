@@ -74,6 +74,18 @@ public class AudioFile {
         return AudioFile(audioFileRef: audioFileRef, fileDataFormat: dataFormat)
     }
 
+    /**
+      Convenience method to create a lossless audio file. Currenly only single channel files are supported.
+
+      - parameter filePath:   The new file path
+      - parameter sampleRate: The sample rate to use in the new file.
+      - parameter overwrite:  Wheter to overwrite an existing file. If `false` and a file exists at the given path the return value will be nil.
+      - returns: The newly created AudioFile or nil if the file couldn't be created.
+     */
+    public class func createLossless(filePath: String, sampleRate: Double, overwrite: Bool) -> AudioFile? {
+        return create(filePath, type: kAudioFileM4AType, format: kAudioFormatAppleLossless, sampleRate: sampleRate, overwrite: overwrite)
+    }
+
     init(audioFileRef: ExtAudioFileRef, fileDataFormat: AudioStreamBasicDescription) {
         self.audioFileRef = audioFileRef
         self.fileDataFormat = fileDataFormat
