@@ -16,7 +16,7 @@ class PeakTests: XCTestCase {
             return
         }
 
-        guard let audioFile = AudioFile(filePath: path) else {
+        guard let audioFile = AudioFile.open(path) else {
             XCTFail("Failed to open wave file")
             return
         }
