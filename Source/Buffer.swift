@@ -91,7 +91,7 @@ public final class Buffer : MutableCollectionType, ArrayLiteralConvertible {
     }
 
     public func removeRange(range: Range<Int>) {
-        precondition(range.startIndex < range.endIndex)
+        precondition(range.startIndex <= range.endIndex)
         precondition(0 <= range.startIndex && range.endIndex <= count)
 
         count -= range.count

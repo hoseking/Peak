@@ -58,13 +58,13 @@ public class Microphone {
         return buffer.count
     }
 
-    public func render(data: UnsafeMutablePointer<Double>, count: Int) {
-        assert(count <= buffer.count)
-
-        for i in 0..<count {
+    public func render(data: UnsafeMutablePointer<Double>, count: Int) -> Int {
+        let renderCount = min(count, buffer.count)
+        for i in 0..<renderCount {
             data[i] = Double(buffer[i])
         }
-        buffer.removeRange(0..<count)
+        buffer.removeRange(0..<renderCount)
+        return renderCount
     }
 
     private func create() {
