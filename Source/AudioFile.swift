@@ -136,6 +136,7 @@ public class AudioFile {
         return fileDataFormat.mSampleRate
     }
 
+    /// The AudioFile's length in sample frames
     public var frameCount: Int64 {
         var numberOfFrames: Int64 = 0
         var numberOfFramesSize = UInt32(sizeof(Int64))
@@ -148,6 +149,7 @@ public class AudioFile {
         return numberOfFrames
     }
 
+    /// The AudioFile's current read/write position
     public var currentFrame: Int {
         get {
             var frame: Int64 = 0
@@ -164,19 +166,18 @@ public class AudioFile {
         }
     }
 
-    public func readFrames(inout data: [Double], count: Int) -> Int? {
-        if data.capacity < count {
-            data.reserveCapacity(count)
-        }
-        for _ in data.count..<count {
-            data.append(0.0)
-        }
+    /// Read audio frames from the file
+    public func readFrames(pointer: UnsafeMutableBufferPointer<Double>) -> Int? {
+        return readFrames(pointer.baseAddress, count: pointer.count)
+    }
 
+    /// Read audio frames from the file
+    public func readFrames(pointer: UnsafeMutablePointer<Double>, count: Int) -> Int? {
         var bufferList = AudioBufferList()
         bufferList.mNumberBuffers = 1
         bufferList.mBuffers.mNumberChannels = 1
         bufferList.mBuffers.mDataByteSize = UInt32(count * sizeof(Double))
-        bufferList.mBuffers.mData = UnsafeMutablePointer(data)
+        bufferList.mBuffers.mData = UnsafeMutablePointer<Void>(pointer)
 
         var numberOfFrames = UInt32(count)
         let status = ExtAudioFileRead(audioFileRef, &numberOfFrames, &bufferList)
@@ -188,12 +189,18 @@ public class AudioFile {
         return Int(numberOfFrames)
     }
 
-    public func writeFrames(data: [Double], count: Int) -> Bool {
+    /// Write audio frames to the file
+    public func writeFrames(pointer: UnsafeBufferPointer<Double>) -> Bool {
+        return writeFrames(pointer.baseAddress, count: pointer.count)
+    }
+
+    /// Write audio frames to the file
+    public func writeFrames(pointer: UnsafePointer<Double>, count: Int) -> Bool {
         var bufferList = AudioBufferList()
         bufferList.mNumberBuffers = 1
         bufferList.mBuffers.mNumberChannels = 1
         bufferList.mBuffers.mDataByteSize = UInt32(count * sizeof(Double))
-        bufferList.mBuffers.mData = UnsafeMutablePointer(data)
+        bufferList.mBuffers.mData = UnsafeMutablePointer(pointer)
 
         let status = ExtAudioFileWrite(audioFileRef, UInt32(count), &bufferList)
         guard status == noErr else {
