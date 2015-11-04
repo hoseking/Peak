@@ -63,16 +63,19 @@ class PeakTests: XCTestCase {
             return
         }
 
-        let expectedChords: [[UInt8]] = [
-            [81, 57],
-            [88, 64],
-            [86, 62],
-            [88, 64]
-        ]
+        let events = midi.noteEvents
+        XCTAssertEqual(events.count, 634)
+        XCTAssertEqual(events[0].timeStamp, 0.5)
+        XCTAssertEqual(events[0].note, 81)
+        XCTAssertEqual(events[1].timeStamp, 0.5)
+        XCTAssertEqual(events[1].note, 57)
+        XCTAssertEqual(events[2].timeStamp, 1.0)
+        XCTAssertEqual(events[2].note, 88)
+        XCTAssertEqual(events[3].timeStamp, 1.0)
+        XCTAssertEqual(events[3].note, 64)
 
-        for i in 0..<4 {
-            XCTAssertEqual(midi.chords[i].notes.map{ $0.note }, expectedChords[i])
-        }
+        let tempoEvents = midi.tempoEvents
+        XCTAssertEqual(tempoEvents.count, 556)
     }
     
 }

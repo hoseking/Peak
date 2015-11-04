@@ -8,30 +8,31 @@ import Foundation
 import AudioToolbox
 
 extension MusicTrack : SequenceType {
-
     public typealias Generator = MusicTrackGenerator
     
     public func generate() -> MusicTrackGenerator {
         return MusicTrackGenerator(track: self)
     }
-    
 }
 
 public class MusicTrackGenerator : GeneratorType {
-
     public typealias Element = MIDIEvent
     
-    var it = MusicEventIterator()
+    var iterator = MusicEventIterator()
     
     init(track: MusicTrack) {
-        guard NewMusicEventIterator(track, &it) == noErr else {
+        guard NewMusicEventIterator(track, &iterator) == noErr else {
             fatalError("Failed to create an music event iterator")
         }
+    }
+
+    deinit {
+        DisposeMusicEventIterator(iterator)
     }
     
     var hasEvent: Bool {
         var hasEvent = DarwinBoolean(false)
-        guard MusicEventIteratorHasCurrentEvent(it, &hasEvent) == noErr else {
+        guard MusicEventIteratorHasCurrentEvent(iterator, &hasEvent) == noErr else {
             return false
         }
         return Bool(hasEvent)
@@ -43,12 +44,11 @@ public class MusicTrackGenerator : GeneratorType {
         }
         
         var event = MIDIEvent()
-        guard MusicEventIteratorGetEventInfo(it, &event.timeStamp, &event.type, &event.data, &event.dataSize) == noErr else {
+        guard MusicEventIteratorGetEventInfo(iterator, &event.timeStamp, &event.type, &event.data, &event.dataSize) == noErr else {
             return nil
         }
         
-        MusicEventIteratorNextEvent(it)
+        MusicEventIteratorNextEvent(iterator)
         return event
     }
-
 }

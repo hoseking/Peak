@@ -8,52 +8,27 @@ import Foundation
 import AudioToolbox
 
 public class MIDIFile {
-
-    var sequence = MusicSequence()
-    var tracks = [MusicTrack]()
-    var chords = [Chord]()
-    var beatsPerMiliSecond = Double()
-    
-    struct Chord {
-        var timeStamp: MusicTimeStamp
-        var notes = [MIDINoteMessage]()
-        
-        init(timeStamp: MusicTimeStamp) {
-            self.timeStamp = timeStamp
-        }
-    }
+    public private(set) var sequence: MusicSequence = nil
+    public private(set) var tracks = [MusicTrack]()
 
     public init?(filePath: String) {
-        let url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, filePath, .CFURLPOSIXPathStyle, false)
-        
         guard NewMusicSequence(&sequence) == noErr else {
-            fatalError("Could not create Music Sequence.")
+            print("Could not create Music Sequence.")
+            return nil
         }
-        
+
+        let url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, filePath, .CFURLPOSIXPathStyle, false)
         guard MusicSequenceFileLoad(sequence, url, MusicSequenceFileTypeID.MIDIType, MusicSequenceLoadFlags.SMF_PreserveTracks) == noErr else {
             return nil
         }
-        
-        setTempo()
+
         compileTracks()
-        compileChords()
     }
-    
-    private func setTempo() {
-        var tempoTrack = MusicTrack()
-        guard MusicSequenceGetTempoTrack(sequence, &tempoTrack) == noErr else {
-            beatsPerMiliSecond = 1.0 / 1000.0
-            return
-        }
-        
-        for event in getEventsForTrack(tempoTrack) {
-            if event.type == kMusicEventType_ExtendedTempo {
-                let tempoPointer = UnsafePointer<ExtendedTempoEvent>(event.data)
-                beatsPerMiliSecond = tempoPointer.memory.bpm / 60000
-            }
-        }
+
+    deinit {
+        DisposeMusicSequence(sequence)
     }
-    
+
     private func compileTracks() {
         var trackCount = UInt32()
         guard MusicSequenceGetTrackCount(sequence, &trackCount) == noErr else {
@@ -68,44 +43,72 @@ public class MIDIFile {
             tracks.append(track)
         }
     }
-    
-    private func compileChords() {
-        for track in tracks {
-            let events = getEventsForTrack(track)
-            let notes = extractNotesFromEvents(events)
-            
-            for (timeStamp, noteMessage) in notes {
-                if let chordIndex = chords.indexOf({ return $0.timeStamp == timeStamp }) {
-                    chords[chordIndex].notes.append(noteMessage)
-                } else {
-                    var chord = Chord(timeStamp: timeStamp)
-                    chord.notes.append(noteMessage)
-                    chords.append(chord)
-                }
-            }
-        }
-    }
-    
-    private func getEventsForTrack(track: MusicTrack) -> [MIDIEvent] {
-        var events = [MIDIEvent]()
-        for e in track {
-            events.append(e)
-        }
-        return events
-    }
-    
-    private func extractNotesFromEvents(events: [MIDIEvent]) -> [(timeStamp: MusicTimeStamp, noteMessage: MIDINoteMessage)] {
-        var notes = [(timeStamp: MusicTimeStamp, noteMessage: MIDINoteMessage)]()
-        for event in events {
-            if event.type == kMusicEventType_MIDINoteMessage {
-                let noteMessagePointer = UnsafeMutablePointer<MIDINoteMessage>(event.data)
-                noteMessagePointer.memory.duration /= Float32(beatsPerMiliSecond)
-                
-                let timeStampInMiliSeconds = event.timeStamp / beatsPerMiliSecond
-                notes.append((timeStampInMiliSeconds, noteMessagePointer.memory))
-            }
-        }
-        return notes
+
+    /// Convert from a beats time stamp value to a time in seconds
+    public func secondsForBeats(beats: MusicTimeStamp) -> Double {
+        var seconds = Float64()
+        MusicSequenceGetSecondsForBeats(sequence, beats, &seconds)
+        return Double(seconds)
     }
 
+    /// Convert from a time in seconds to a beats time stamp
+    public func beatsForSeconds(seconds: Double) -> MusicTimeStamp {
+        var beats = MusicTimeStamp()
+        MusicSequenceGetBeatsForSeconds(sequence, seconds, &beats)
+        return beats
+    }
+
+    /// The collection of tempo events
+    public var tempoEvents: [MIDITempoEvent] {
+        var track = MusicTrack()
+        guard MusicSequenceGetTempoTrack(sequence, &track) == noErr else {
+            return []
+        }
+
+        var tempoEvents = [MIDITempoEvent]()
+        for event in track {
+            guard event.type == kMusicEventType_ExtendedTempo else {
+                continue
+            }
+
+            let message = UnsafeMutablePointer<ExtendedTempoEvent>(event.data)
+            let event = MIDITempoEvent(
+                timeStamp: event.timeStamp,
+                bpm: message.memory.bpm
+            )
+            tempoEvents.append(event)
+        }
+        return tempoEvents
+    }
+
+    /// The collection of all note events in the file sorted by timestamp
+    public var noteEvents: [MIDINoteEvent] {
+        var events = [MIDINoteEvent]()
+        for track in tracks {
+            events.appendContentsOf(noteEventsInTrack(track))
+        }
+        events.sortInPlace{ $0.timeStamp < $1.timeStamp }
+        return events
+    }
+
+    /// The collection of note events in a particular track
+    public func noteEventsInTrack(track: MusicTrack) -> [MIDINoteEvent] {
+        var noteEvents = [MIDINoteEvent]()
+        for event in track {
+            guard event.type == kMusicEventType_MIDINoteMessage else {
+                continue
+            }
+
+            let message = UnsafeMutablePointer<MIDINoteMessage>(event.data)
+            let event = MIDINoteEvent(
+                timeStamp: event.timeStamp,
+                duration: message.memory.duration,
+                channel: message.memory.channel,
+                note: message.memory.note,
+                velocity: message.memory.velocity
+            )
+            noteEvents.append(event)
+        }
+        return noteEvents
+    }
 }
