@@ -35,8 +35,16 @@ public final class Buffer : MutableCollectionType, ArrayLiteralConvertible {
     }
 
     /// A pointer to the RealArray's memory
-    public var pointer: UnsafeMutablePointer<Element> {
+    var pointer: UnsafeMutablePointer<Element> {
         return buffer.withUnsafeMutablePointerToElements { $0 }
+    }
+
+    public func withUnsafeBufferPointer<R>(@noescape body: (UnsafeBufferPointer<Element>) throws -> R) rethrows -> R {
+        return try body(UnsafeBufferPointer(start: pointer, count: count))
+    }
+
+    public func withUnsafeMutableBufferPointer<R>(@noescape body: (UnsafeMutableBufferPointer<Element>) throws -> R) rethrows -> R {
+        return try body(UnsafeMutableBufferPointer(start: pointer, count: count))
     }
 
     /// Construct an uninitialized RealArray of the given size
@@ -81,6 +89,7 @@ public final class Buffer : MutableCollectionType, ArrayLiteralConvertible {
     public func copy() -> Buffer {
         let copy = Buffer(capacity: count)
         copy.pointer.initializeFrom(pointer, count: count)
+        copy.count = count
         return copy
     }
 

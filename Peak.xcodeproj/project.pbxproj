@@ -7,9 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		001A51601C6D0187008D498C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004549AB1BD054E300AC387F /* AudioToolbox.framework */; };
+		001A51671C6D0345008D498C /* IONode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001A51651C6D0345008D498C /* IONode.swift */; };
+		001A51681C6D0345008D498C /* IONode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001A51651C6D0345008D498C /* IONode.swift */; };
+		001A51691C6D0345008D498C /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001A51661C6D0345008D498C /* Node.swift */; };
+		001A516A1C6D0345008D498C /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001A51661C6D0345008D498C /* Node.swift */; };
+		001A516D1C6D037B008D498C /* MixerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001A516B1C6D037B008D498C /* MixerNode.swift */; };
+		001A516E1C6D037B008D498C /* MixerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001A516B1C6D037B008D498C /* MixerNode.swift */; };
+		001A516F1C6D037B008D498C /* SamplerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001A516C1C6D037B008D498C /* SamplerNode.swift */; };
+		001A51701C6D037B008D498C /* SamplerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001A516C1C6D037B008D498C /* SamplerNode.swift */; };
 		002966BF1BD052340096C626 /* Peak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005809451BD04F2700B164F6 /* Peak.framework */; };
-		004549A51BD0530000AC387F /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005809641BD050AE00B164F6 /* AudioFile.swift */; };
-		004549A61BD0530000AC387F /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005809651BD050AE00B164F6 /* Microphone.swift */; };
+		0042EC371C65345800824543 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042EC2F1C65345800824543 /* Graph.swift */; };
+		0042EC381C65345800824543 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042EC2F1C65345800824543 /* Graph.swift */; };
+		0042EC3B1C65345800824543 /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042EC321C65345800824543 /* AudioFile.swift */; };
+		0042EC3C1C65345800824543 /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042EC321C65345800824543 /* AudioFile.swift */; };
+		0042EC3D1C65345800824543 /* MIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042EC341C65345800824543 /* MIDIEvent.swift */; };
+		0042EC3E1C65345800824543 /* MIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042EC341C65345800824543 /* MIDIEvent.swift */; };
+		0042EC3F1C65345800824543 /* MIDIFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042EC351C65345800824543 /* MIDIFile.swift */; };
+		0042EC401C65345800824543 /* MIDIFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042EC351C65345800824543 /* MIDIFile.swift */; };
+		0042EC411C65345800824543 /* MusicTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042EC361C65345800824543 /* MusicTrack.swift */; };
+		0042EC421C65345800824543 /* MusicTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042EC361C65345800824543 /* MusicTrack.swift */; };
+		0042EC5C1C6536D500824543 /* Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042EC5B1C6536D500824543 /* Buffer.swift */; };
+		0042EC5D1C6536D500824543 /* Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0042EC5B1C6536D500824543 /* Buffer.swift */; };
 		004549A71BD0533400AC387F /* Peak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0045498D1BD052B100AC387F /* Peak.framework */; };
 		004549AC1BD054E300AC387F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004549AB1BD054E300AC387F /* AudioToolbox.framework */; };
 		004549AE1BD054EA00AC387F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 004549AD1BD054EA00AC387F /* AudioToolbox.framework */; };
@@ -17,16 +36,18 @@
 		004549B21BD0575500AC387F /* Peak.h in Headers */ = {isa = PBXBuildFile; fileRef = 004549B01BD0575500AC387F /* Peak.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		004549B41BD0576700AC387F /* PeakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004549B31BD0576700AC387F /* PeakTests.swift */; };
 		004549B51BD0576700AC387F /* PeakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004549B31BD0576700AC387F /* PeakTests.swift */; };
-		004FDE9D1BD9A88800161D39 /* Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004FDE9C1BD9A88800161D39 /* Buffer.swift */; };
-		004FDE9E1BD9A88800161D39 /* Buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004FDE9C1BD9A88800161D39 /* Buffer.swift */; };
-		005809661BD050AE00B164F6 /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005809641BD050AE00B164F6 /* AudioFile.swift */; };
-		005809671BD050AE00B164F6 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005809651BD050AE00B164F6 /* Microphone.swift */; };
-		00EFE8D71BD1A7A100FF769B /* MIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D41BD1A7A100FF769B /* MIDIEvent.swift */; };
-		00EFE8D81BD1A7A100FF769B /* MIDIFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D51BD1A7A100FF769B /* MIDIFile.swift */; };
-		00EFE8D91BD1A7A100FF769B /* MusicTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D61BD1A7A100FF769B /* MusicTrack.swift */; };
-		00EFE8DA1BD1A7C000FF769B /* MIDIEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D41BD1A7A100FF769B /* MIDIEvent.swift */; };
-		00EFE8DB1BD1A7C300FF769B /* MIDIFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D51BD1A7A100FF769B /* MIDIFile.swift */; };
-		00EFE8DC1BD1A7C300FF769B /* MusicTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EFE8D61BD1A7A100FF769B /* MusicTrack.swift */; };
+		0077C6791C63D4B900AC71CA /* Peak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005809451BD04F2700B164F6 /* Peak.framework */; };
+		0077C67A1C63D4B900AC71CA /* Peak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 005809451BD04F2700B164F6 /* Peak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0077C6931C63D6EE00AC71CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077C68C1C63D6EE00AC71CA /* AppDelegate.swift */; };
+		0077C6941C63D6EE00AC71CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0077C68D1C63D6EE00AC71CA /* Main.storyboard */; };
+		0077C6981C63D6EE00AC71CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077C6921C63D6EE00AC71CA /* ViewController.swift */; };
+		0077C69D1C63D75100AC71CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0077C69A1C63D75100AC71CA /* Assets.xcassets */; };
+		0077C69F1C63D75100AC71CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0077C69C1C63D75100AC71CA /* LaunchScreen.storyboard */; };
+		0077C6A11C63E0C500AC71CA /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077C6A01C63E0C500AC71CA /* WaveformView.swift */; };
+		00CE98AB1C73A5BC00E8E211 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CE98AA1C73A5BC00E8E211 /* Helpers.swift */; };
+		00CE98AC1C73A5BC00E8E211 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CE98AA1C73A5BC00E8E211 /* Helpers.swift */; };
+		00CE98B51C73B15A00E8E211 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CE98B41C73B15A00E8E211 /* Channel.swift */; };
+		00CE98B61C73B15A00E8E211 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CE98B41C73B15A00E8E211 /* Channel.swift */; };
 		00EFE8E61BD1A83200FF769B /* alb_esp1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E31BD1A81200FF769B /* alb_esp1.mid */; };
 		00EFE8E71BD1A83200FF769B /* sin_1000Hz_-3dBFS_1s.wav in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E51BD1A81200FF769B /* sin_1000Hz_-3dBFS_1s.wav */; };
 		00EFE8E81BD1A83300FF769B /* alb_esp1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E31BD1A81200FF769B /* alb_esp1.mid */; };
@@ -48,23 +69,58 @@
 			remoteGlobalIDString = 005809441BD04F2700B164F6;
 			remoteInfo = Peak;
 		};
+		0077C67B1C63D4B900AC71CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0058093C1BD04F2700B164F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 005809441BD04F2700B164F6;
+			remoteInfo = PeakiOS;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0077C67D1C63D4B900AC71CA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0077C67A1C63D4B900AC71CA /* Peak.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		001A51651C6D0345008D498C /* IONode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IONode.swift; sourceTree = "<group>"; };
+		001A51661C6D0345008D498C /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		001A516B1C6D037B008D498C /* MixerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MixerNode.swift; sourceTree = "<group>"; };
+		001A516C1C6D037B008D498C /* SamplerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SamplerNode.swift; sourceTree = "<group>"; };
+		0042EC2F1C65345800824543 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		0042EC321C65345800824543 /* AudioFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioFile.swift; sourceTree = "<group>"; };
+		0042EC341C65345800824543 /* MIDIEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIEvent.swift; sourceTree = "<group>"; };
+		0042EC351C65345800824543 /* MIDIFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIFile.swift; sourceTree = "<group>"; };
+		0042EC361C65345800824543 /* MusicTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicTrack.swift; sourceTree = "<group>"; };
+		0042EC5B1C6536D500824543 /* Buffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buffer.swift; sourceTree = "<group>"; };
 		0045498D1BD052B100AC387F /* Peak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Peak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		004549961BD052B200AC387F /* PeakOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeakOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		004549AB1BD054E300AC387F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		004549AD1BD054EA00AC387F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		004549B01BD0575500AC387F /* Peak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Peak.h; sourceTree = "<group>"; };
 		004549B31BD0576700AC387F /* PeakTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakTests.swift; sourceTree = "<group>"; };
-		004FDE9C1BD9A88800161D39 /* Buffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buffer.swift; sourceTree = "<group>"; };
 		005809451BD04F2700B164F6 /* Peak.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Peak.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0058094F1BD04F2700B164F6 /* PeakiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeakiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		005809641BD050AE00B164F6 /* AudioFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioFile.swift; sourceTree = "<group>"; };
-		005809651BD050AE00B164F6 /* Microphone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Microphone.swift; sourceTree = "<group>"; };
-		00EFE8D41BD1A7A100FF769B /* MIDIEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIEvent.swift; sourceTree = "<group>"; };
-		00EFE8D51BD1A7A100FF769B /* MIDIFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIFile.swift; sourceTree = "<group>"; };
-		00EFE8D61BD1A7A100FF769B /* MusicTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicTrack.swift; sourceTree = "<group>"; };
+		0077C6551C63D42200AC71CA /* PeakiOSExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeakiOSExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0077C68C1C63D6EE00AC71CA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0077C68D1C63D6EE00AC71CA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		0077C6921C63D6EE00AC71CA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0077C69A1C63D75100AC71CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0077C69B1C63D75100AC71CA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0077C69C1C63D75100AC71CA /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0077C6A01C63E0C500AC71CA /* WaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
+		00CE98AA1C73A5BC00E8E211 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		00CE98B41C73B15A00E8E211 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		00EFE8E11BD1A80B00FF769B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00EFE8E31BD1A81200FF769B /* alb_esp1.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = alb_esp1.mid; sourceTree = "<group>"; };
 		00EFE8E41BD1A81200FF769B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,9 +160,59 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0077C6521C63D42200AC71CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				001A51601C6D0187008D498C /* AudioToolbox.framework in Frameworks */,
+				0077C6791C63D4B900AC71CA /* Peak.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		001A51641C6D0345008D498C /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				001A51661C6D0345008D498C /* Node.swift */,
+				001A51651C6D0345008D498C /* IONode.swift */,
+				001A516B1C6D037B008D498C /* MixerNode.swift */,
+				001A516C1C6D037B008D498C /* SamplerNode.swift */,
+			);
+			path = Nodes;
+			sourceTree = "<group>";
+		};
+		0042EC2E1C65345800824543 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				00CE98AA1C73A5BC00E8E211 /* Helpers.swift */,
+				0042EC5B1C6536D500824543 /* Buffer.swift */,
+				0042EC2F1C65345800824543 /* Graph.swift */,
+				00CE98B41C73B15A00E8E211 /* Channel.swift */,
+				001A51641C6D0345008D498C /* Nodes */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		0042EC311C65345800824543 /* AudioFile */ = {
+			isa = PBXGroup;
+			children = (
+				0042EC321C65345800824543 /* AudioFile.swift */,
+			);
+			path = AudioFile;
+			sourceTree = "<group>";
+		};
+		0042EC331C65345800824543 /* MIDI */ = {
+			isa = PBXGroup;
+			children = (
+				0042EC341C65345800824543 /* MIDIEvent.swift */,
+				0042EC351C65345800824543 /* MIDIFile.swift */,
+				0042EC361C65345800824543 /* MusicTrack.swift */,
+			);
+			path = MIDI;
+			sourceTree = "<group>";
+		};
 		004549AF1BD054F300AC387F /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +225,7 @@
 		0058093B1BD04F2700B164F6 = {
 			isa = PBXGroup;
 			children = (
+				0077C6671C63D44600AC71CA /* Example */,
 				0058095F1BD0507800B164F6 /* Source */,
 				005809681BD050C400B164F6 /* Tests */,
 				004549AF1BD054F300AC387F /* Dependencies */,
@@ -133,6 +240,7 @@
 				0058094F1BD04F2700B164F6 /* PeakiOSTests.xctest */,
 				0045498D1BD052B100AC387F /* Peak.framework */,
 				004549961BD052B200AC387F /* PeakOSXTests.xctest */,
+				0077C6551C63D42200AC71CA /* PeakiOSExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,14 +248,11 @@
 		0058095F1BD0507800B164F6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				00EFE8E01BD1A80B00FF769B /* Resources */,
 				004549B01BD0575500AC387F /* Peak.h */,
-				005809641BD050AE00B164F6 /* AudioFile.swift */,
-				004FDE9C1BD9A88800161D39 /* Buffer.swift */,
-				005809651BD050AE00B164F6 /* Microphone.swift */,
-				00EFE8D41BD1A7A100FF769B /* MIDIEvent.swift */,
-				00EFE8D51BD1A7A100FF769B /* MIDIFile.swift */,
-				00EFE8D61BD1A7A100FF769B /* MusicTrack.swift */,
+				0042EC2E1C65345800824543 /* Audio */,
+				0042EC311C65345800824543 /* AudioFile */,
+				0042EC331C65345800824543 /* MIDI */,
+				00EFE8E01BD1A80B00FF769B /* Resources */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -159,6 +264,36 @@
 				004549B31BD0576700AC387F /* PeakTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		0077C6671C63D44600AC71CA /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				0077C68B1C63D6EE00AC71CA /* PeakiOSExample */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		0077C68B1C63D6EE00AC71CA /* PeakiOSExample */ = {
+			isa = PBXGroup;
+			children = (
+				0077C6991C63D75100AC71CA /* Resources */,
+				0077C68D1C63D6EE00AC71CA /* Main.storyboard */,
+				0077C68C1C63D6EE00AC71CA /* AppDelegate.swift */,
+				0077C6921C63D6EE00AC71CA /* ViewController.swift */,
+				0077C6A01C63E0C500AC71CA /* WaveformView.swift */,
+			);
+			path = PeakiOSExample;
+			sourceTree = "<group>";
+		};
+		0077C6991C63D75100AC71CA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0077C69A1C63D75100AC71CA /* Assets.xcassets */,
+				0077C69B1C63D75100AC71CA /* Info.plist */,
+				0077C69C1C63D75100AC71CA /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		00EFE8E01BD1A80B00FF769B /* Resources */ = {
@@ -273,13 +408,32 @@
 			productReference = 0058094F1BD04F2700B164F6 /* PeakiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		0077C6541C63D42200AC71CA /* PeakiOSExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0077C6661C63D42200AC71CA /* Build configuration list for PBXNativeTarget "PeakiOSExample" */;
+			buildPhases = (
+				0077C6511C63D42200AC71CA /* Sources */,
+				0077C6521C63D42200AC71CA /* Frameworks */,
+				0077C6531C63D42200AC71CA /* Resources */,
+				0077C67D1C63D4B900AC71CA /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0077C67C1C63D4B900AC71CA /* PBXTargetDependency */,
+			);
+			name = PeakiOSExample;
+			productName = PeakiOSExample;
+			productReference = 0077C6551C63D42200AC71CA /* PeakiOSExample.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		0058093C1BD04F2700B164F6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Venture Media Labs";
 				TargetAttributes = {
@@ -295,6 +449,9 @@
 					0058094E1BD04F2700B164F6 = {
 						CreatedOnToolsVersion = 7.0.1;
 					};
+					0077C6541C63D42200AC71CA = {
+						CreatedOnToolsVersion = 7.2;
+					};
 				};
 			};
 			buildConfigurationList = 0058093F1BD04F2700B164F6 /* Build configuration list for PBXProject "Peak" */;
@@ -303,6 +460,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 0058093B1BD04F2700B164F6;
 			productRefGroup = 005809461BD04F2700B164F6 /* Products */;
@@ -313,6 +471,7 @@
 				0058094E1BD04F2700B164F6 /* PeakiOSTests */,
 				0045498C1BD052B100AC387F /* PeakOSX */,
 				004549951BD052B200AC387F /* PeakOSXTests */,
+				0077C6541C63D42200AC71CA /* PeakiOSExample */,
 			);
 		};
 /* End PBXProject section */
@@ -350,6 +509,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0077C6531C63D42200AC71CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0077C69D1C63D75100AC71CA /* Assets.xcassets in Resources */,
+				0077C69F1C63D75100AC71CA /* LaunchScreen.storyboard in Resources */,
+				0077C6941C63D6EE00AC71CA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -357,12 +526,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00EFE8DC1BD1A7C300FF769B /* MusicTrack.swift in Sources */,
-				00EFE8DB1BD1A7C300FF769B /* MIDIFile.swift in Sources */,
-				00EFE8DA1BD1A7C000FF769B /* MIDIEvent.swift in Sources */,
-				004549A51BD0530000AC387F /* AudioFile.swift in Sources */,
-				004549A61BD0530000AC387F /* Microphone.swift in Sources */,
-				004FDE9E1BD9A88800161D39 /* Buffer.swift in Sources */,
+				0042EC401C65345800824543 /* MIDIFile.swift in Sources */,
+				00CE98B61C73B15A00E8E211 /* Channel.swift in Sources */,
+				001A516A1C6D0345008D498C /* Node.swift in Sources */,
+				0042EC3E1C65345800824543 /* MIDIEvent.swift in Sources */,
+				0042EC5D1C6536D500824543 /* Buffer.swift in Sources */,
+				00CE98AC1C73A5BC00E8E211 /* Helpers.swift in Sources */,
+				0042EC3C1C65345800824543 /* AudioFile.swift in Sources */,
+				0042EC381C65345800824543 /* Graph.swift in Sources */,
+				001A51681C6D0345008D498C /* IONode.swift in Sources */,
+				001A516E1C6D037B008D498C /* MixerNode.swift in Sources */,
+				001A51701C6D037B008D498C /* SamplerNode.swift in Sources */,
+				0042EC421C65345800824543 /* MusicTrack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,12 +553,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00EFE8D91BD1A7A100FF769B /* MusicTrack.swift in Sources */,
-				00EFE8D81BD1A7A100FF769B /* MIDIFile.swift in Sources */,
-				00EFE8D71BD1A7A100FF769B /* MIDIEvent.swift in Sources */,
-				005809661BD050AE00B164F6 /* AudioFile.swift in Sources */,
-				005809671BD050AE00B164F6 /* Microphone.swift in Sources */,
-				004FDE9D1BD9A88800161D39 /* Buffer.swift in Sources */,
+				0042EC3F1C65345800824543 /* MIDIFile.swift in Sources */,
+				00CE98B51C73B15A00E8E211 /* Channel.swift in Sources */,
+				001A51691C6D0345008D498C /* Node.swift in Sources */,
+				0042EC3D1C65345800824543 /* MIDIEvent.swift in Sources */,
+				0042EC5C1C6536D500824543 /* Buffer.swift in Sources */,
+				0042EC3B1C65345800824543 /* AudioFile.swift in Sources */,
+				0042EC371C65345800824543 /* Graph.swift in Sources */,
+				00CE98AB1C73A5BC00E8E211 /* Helpers.swift in Sources */,
+				001A51671C6D0345008D498C /* IONode.swift in Sources */,
+				001A516D1C6D037B008D498C /* MixerNode.swift in Sources */,
+				001A516F1C6D037B008D498C /* SamplerNode.swift in Sources */,
+				0042EC411C65345800824543 /* MusicTrack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +573,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				004549B41BD0576700AC387F /* PeakTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0077C6511C63D42200AC71CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0077C6981C63D6EE00AC71CA /* ViewController.swift in Sources */,
+				0077C6931C63D6EE00AC71CA /* AppDelegate.swift in Sources */,
+				0077C6A11C63E0C500AC71CA /* WaveformView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +598,11 @@
 			isa = PBXTargetDependency;
 			target = 005809441BD04F2700B164F6 /* PeakiOS */;
 			targetProxy = 005809511BD04F2700B164F6 /* PBXContainerItemProxy */;
+		};
+		0077C67C1C63D4B900AC71CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 005809441BD04F2700B164F6 /* PeakiOS */;
+			targetProxy = 0077C67B1C63D4B900AC71CA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -631,6 +827,32 @@
 			};
 			name = Release;
 		};
+		0077C6641C63D42200AC71CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Example/PeakiOSExample/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoseking.PeakiOSExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0077C6651C63D42200AC71CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = Example/PeakiOSExample/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hoseking.PeakiOSExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -675,6 +897,15 @@
 			buildConfigurations = (
 				0058095D1BD04F2700B164F6 /* Debug */,
 				0058095E1BD04F2700B164F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0077C6661C63D42200AC71CA /* Build configuration list for PBXNativeTarget "PeakiOSExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0077C6641C63D42200AC71CA /* Debug */,
+				0077C6651C63D42200AC71CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
