@@ -18,7 +18,7 @@ public class SamplerNode: Node {
     public var target: (bus: UInt32, node: Node)?
 
     var instrumentPath: String?
-    var instrumentType: UInt8?
+    var instrumentType: Int?
 
     public init() {
         cd = AudioComponentDescription(
@@ -29,7 +29,7 @@ public class SamplerNode: Node {
             componentFlagsMask:    0)
     }
 
-    public convenience init(instrumentPath: String, instrumentType: UInt8) {
+    public convenience init(instrumentPath: String, instrumentType: Int) {
         self.init()
         self.instrumentPath = instrumentPath
         self.instrumentType = instrumentType
@@ -40,11 +40,11 @@ public class SamplerNode: Node {
 
         let instrumentURL = NSURL.fileURLWithPath(instrumentPath)
         var instrumentData = AUSamplerInstrumentData(
-            fileURL: Unmanaged.passUnretained(instrumentURL),
-            instrumentType: instrumentType,
-            bankMSB: UInt8(kAUSampler_DefaultMelodicBankMSB),
-            bankLSB: UInt8(kAUSampler_DefaultBankLSB),
-            presetID: 0)
+            fileURL:        Unmanaged.passUnretained(instrumentURL),
+            instrumentType: UInt8(instrumentType),
+            bankMSB:        UInt8(kAUSampler_DefaultMelodicBankMSB),
+            bankLSB:        UInt8(kAUSampler_DefaultBankLSB),
+            presetID:       0)
 
         let status = AudioUnitSetProperty(
             audioUnit,
