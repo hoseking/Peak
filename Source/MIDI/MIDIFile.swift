@@ -11,6 +11,15 @@ public class MIDIFile {
     public private(set) var sequence: MusicSequence = nil
     public private(set) var tracks = [MusicTrack]()
 
+    public static func create(outFilePath: String, sequence: MusicSequence) -> MIDIFile? {
+        let url = NSURL.fileURLWithPath(outFilePath)
+        guard MusicSequenceFileCreate(sequence, url, MusicSequenceFileTypeID.MIDIType, MusicSequenceFileFlags.EraseFile, 0) == noErr else {
+            return nil
+        }
+
+        return MIDIFile(filePath: outFilePath)
+    }
+
     public init?(filePath: String) {
         guard NewMusicSequence(&sequence) == noErr else {
             print("Could not create Music Sequence.")
