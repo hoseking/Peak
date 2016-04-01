@@ -16,8 +16,8 @@ public struct MIDIEvent {
     public var type = MusicEventType()
 
     /// Pointer to event data
-    public var data = UnsafePointer<Void>()
-
+    public var data: UnsafePointer<Void> = nil
+    
     /// Size of event data
     public var dataSize = UInt32()
 }

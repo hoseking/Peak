@@ -13,7 +13,7 @@ public class MIDIFile {
 
     public static func create(outFilePath: String, sequence: MusicSequence) -> MIDIFile? {
         let url = NSURL.fileURLWithPath(outFilePath)
-        guard MusicSequenceFileCreate(sequence, url, MusicSequenceFileTypeID.MIDIType, MusicSequenceFileFlags.EraseFile, 0) == noErr else {
+        guard MusicSequenceFileCreate(sequence, url, .MIDIType, .EraseFile, 0) == noErr else {
             return nil
         }
 
@@ -27,7 +27,7 @@ public class MIDIFile {
         }
 
         let url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, filePath, .CFURLPOSIXPathStyle, false)
-        guard MusicSequenceFileLoad(sequence, url, MusicSequenceFileTypeID.MIDIType, MusicSequenceLoadFlags.SMF_PreserveTracks) == noErr else {
+        guard MusicSequenceFileLoad(sequence, url, .MIDIType, .SMF_PreserveTracks) == noErr else {
             return nil
         }
 
@@ -45,7 +45,7 @@ public class MIDIFile {
         }
         
         for trackIndex in 0..<trackCount {
-            var track = MusicTrack()
+            var track: MusicTrack = nil
             guard MusicSequenceGetIndTrack(sequence, trackIndex, &track) == noErr else {
                 fatalError("Could not retrieve track \(trackIndex) from midi file.")
             }
@@ -69,7 +69,7 @@ public class MIDIFile {
 
     /// The collection of tempo events
     public var tempoEvents: [MIDITempoEvent] {
-        var track = MusicTrack()
+        var track: MusicTrack = nil
         guard MusicSequenceGetTempoTrack(sequence, &track) == noErr else {
             return []
         }

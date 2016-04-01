@@ -16,7 +16,7 @@ public class Graph {
         case Output = 0 // 0 = O = Output
     }
 
-    var graph = AUGraph()
+    var graph: AUGraph = nil
     var ioNode = IONode()
     var mixerNode = MixerNode()
     var channels = [Channel]()

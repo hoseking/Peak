@@ -18,7 +18,7 @@ extension MusicTrack : SequenceType {
 public class MusicTrackGenerator : GeneratorType {
     public typealias Element = MIDIEvent
     
-    var iterator = MusicEventIterator()
+    var iterator: MusicEventIterator = nil
     
     init(track: MusicTrack) {
         guard NewMusicEventIterator(track, &iterator) == noErr else {
