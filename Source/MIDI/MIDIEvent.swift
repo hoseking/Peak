@@ -20,31 +20,57 @@ public struct MIDIEvent {
     
     /// Size of event data
     public var dataSize = UInt32()
+
+    public init() {}
+
+    public init(timeStamp: MusicTimeStamp, type: MusicEventType, data: UnsafePointer<Void>, dataSize: UInt32) {
+        self.timeStamp = timeStamp
+        self.type = type
+        self.data = data
+        self.dataSize = dataSize
+    }
 }
 
 /// A note MIDI event
 public struct MIDINoteEvent {
     /// Timestamp of the event in beats
-    public var timeStamp: MusicTimeStamp
+    public var timeStamp = MusicTimeStamp()
 
     /// Duration of the event in beats
-    public var duration: Float32
+    public var duration = Float32()
 
     /// MIDI channel
-    public var channel: UInt8
+    public var channel = UInt8()
 
     /// MIDI note number
-    public var note: UInt8
+    public var note = UInt8()
 
     /// Key-press velocity
-    public var velocity: UInt8
+    public var velocity = UInt8()
+
+    public init() {}
+
+    public init(timeStamp: MusicTimeStamp, duration: Float32, channel: UInt8, note: UInt8, velocity: UInt8) {
+        self.timeStamp = timeStamp
+        self.duration = duration
+        self.channel = channel
+        self.note = note
+        self.velocity = velocity
+    }
 }
 
 /// A tempo MIDI event
 public struct MIDITempoEvent {
     /// Timestamp of the event in beats
-    public var timeStamp: MusicTimeStamp
+    public var timeStamp = MusicTimeStamp()
 
     /// Beats per minute
-    public var bpm: Float64
+    public var bpm = Float64()
+
+    public init() {}
+
+    public init(timeStamp: MusicTimeStamp, bpm: Float64) {
+        self.timeStamp = timeStamp
+        self.bpm = bpm
+    }
 }
