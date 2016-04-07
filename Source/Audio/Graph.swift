@@ -21,11 +21,14 @@ public class Graph {
     var mixerNode = MixerNode()
     var channels = [Channel]()
 
+    private let queue = dispatch_queue_create("Peak.Graph", DISPATCH_QUEUE_SERIAL)
     private let sampleSize = UInt32(sizeof(Buffer.Element.self))
     private let inputCallback: AURenderCallback = { (inRefCon, ioActionFlags, inTimeStamp, inBusNumber, inNumberFrames, ioData) -> OSStatus in
         let controller = UnsafePointer<Graph>(inRefCon).memory
         if !controller.deiniting {
-            controller.preloadInput(ioActionFlags, inTimeStamp, inBusNumber, inNumberFrames)
+            dispatch_sync(controller.queue) {
+                controller.preloadInput(ioActionFlags, inTimeStamp, inBusNumber, inNumberFrames)
+            }
         }
         return noErr
     }
@@ -242,11 +245,21 @@ extension Graph {
         buffer.count += numSamplesRendered;
 
         // Notify new data
-        inputAvailable?(buffer.count)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.inputAvailable?(self.buffer.count)
+        }
     }
 
     public func renderInput(data: UnsafeMutablePointer<Double>, count: Int) -> Int {
-        let renderCount = min(count, buffer.count)
+        var renderCount = 0
+        dispatch_sync(queue) {
+            renderCount = self.renderInQueue(data, count: count)
+        }
+        return renderCount
+    }
+
+    private func renderInQueue(data: UnsafeMutablePointer<Double>, count: Int) -> Int {
+        let renderCount = min(count, self.buffer.count)
         guard renderCount > 0 else { return 0 }
         data.assignFrom(buffer.pointer, count: renderCount)
         buffer.removeRange(0..<renderCount)
