@@ -34,7 +34,6 @@ public class Graph {
     }
 
     private var buffer: Buffer!
-    private var context: Graph!
     private var deiniting = false
 
     public var running: Bool {
@@ -71,7 +70,6 @@ public class Graph {
 
     public init() {
         buffer = Buffer(capacity: 8192)
-        context = self
 
         checkStatus(NewAUGraph(&graph))
         checkStatus(AUGraphOpen(graph))
@@ -139,6 +137,7 @@ public class Graph {
             checkStatus(AudioUnitSetProperty(ioNode.audioUnit, kAudioUnitProperty_ShouldAllocateBuffer, kAudioUnitScope_Output, Bus.Input.rawValue, &disableFlag, UInt32(sizeof(disableFlag.dynamicType))))
 
             // Setup input callback
+            var context = self
             var callbackStruct = AURenderCallbackStruct(inputProc: inputCallback, inputProcRefCon: &context)
             checkStatus(AudioUnitSetProperty(ioNode.audioUnit, kAudioOutputUnitProperty_SetInputCallback, kAudioUnitScope_Global, 0, &callbackStruct, UInt32(sizeof(callbackStruct.dynamicType))))
         }
