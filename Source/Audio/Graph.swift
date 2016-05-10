@@ -24,7 +24,8 @@ public class Graph {
     private let queue = dispatch_queue_create("Peak.Graph", DISPATCH_QUEUE_SERIAL)
     private let sampleSize = UInt32(sizeof(Buffer.Element.self))
     private let inputCallback: AURenderCallback = { (inRefCon, ioActionFlags, inTimeStamp, inBusNumber, inNumberFrames, ioData) -> OSStatus in
-        let controller = UnsafePointer<Graph>(inRefCon).memory
+        let controller = unsafeBitCast(inRefCon, Graph.self)
+        assert(controller is Graph)
         if !controller.deiniting {
             dispatch_sync(controller.queue) {
                 controller.preloadInput(ioActionFlags, inTimeStamp, inBusNumber, inNumberFrames)
@@ -85,10 +86,6 @@ public class Graph {
     deinit {
         deiniting = true
         stop()
-        for i in 0..<channels.count {
-            guard let channel = channels.at(i) else { fatalError("Could not deinit channel") }
-            remove(channel)
-        }
         checkStatus(DisposeAUGraph(graph))
     }
 
@@ -137,8 +134,8 @@ public class Graph {
             checkStatus(AudioUnitSetProperty(ioNode.audioUnit, kAudioUnitProperty_ShouldAllocateBuffer, kAudioUnitScope_Output, Bus.Input.rawValue, &disableFlag, UInt32(sizeof(disableFlag.dynamicType))))
 
             // Setup input callback
-            var context = self
-            var callbackStruct = AURenderCallbackStruct(inputProc: inputCallback, inputProcRefCon: &context)
+            let context = UnsafeMutablePointer<Void>(unsafeAddressOf(self))
+            var callbackStruct = AURenderCallbackStruct(inputProc: inputCallback, inputProcRefCon: context)
             checkStatus(AudioUnitSetProperty(ioNode.audioUnit, kAudioOutputUnitProperty_SetInputCallback, kAudioUnitScope_Global, 0, &callbackStruct, UInt32(sizeof(callbackStruct.dynamicType))))
         }
 
