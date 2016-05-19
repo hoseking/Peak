@@ -25,7 +25,6 @@ public class Graph {
     private let sampleSize = UInt32(sizeof(Buffer.Element.self))
     private let inputCallback: AURenderCallback = { (inRefCon, ioActionFlags, inTimeStamp, inBusNumber, inNumberFrames, ioData) -> OSStatus in
         let controller = unsafeBitCast(inRefCon, Graph.self)
-        assert(controller is Graph)
         if !controller.deiniting {
             dispatch_sync(controller.queue) {
                 controller.preloadInput(ioActionFlags, inTimeStamp, inBusNumber, inNumberFrames)
