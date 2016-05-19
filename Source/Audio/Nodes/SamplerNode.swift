@@ -9,24 +9,17 @@ import AudioToolbox
 public class SamplerNode: Node {
     public var audioUnit: AudioUnit = nil {
         didSet {
-            guard audioUnit != nil else { return }
             setup()
         }
     }
     public var audioNode: AUNode = 0
     public var cd: AudioComponentDescription
-    public var target: (bus: UInt32, node: Node)?
 
     var instrumentPath: String?
     var instrumentType: Int?
 
     public init() {
-        cd = AudioComponentDescription(
-            componentType:         kAudioUnitType_MusicDevice,
-            componentSubType:      kAudioUnitSubType_Sampler,
-            componentManufacturer: kAudioUnitManufacturer_Apple,
-            componentFlags:        0,
-            componentFlagsMask:    0)
+        cd = AudioComponentDescription(manufacturer: kAudioUnitManufacturer_Apple, type: kAudioUnitType_MusicDevice, subType: kAudioUnitSubType_Sampler)
     }
 
     public convenience init(instrumentPath: String, instrumentType: Int) {
@@ -36,6 +29,7 @@ public class SamplerNode: Node {
     }
 
     func setup() {
+        guard audioUnit != nil else { return }
         guard let instrumentPath = instrumentPath, let instrumentType = instrumentType else { return }
 
         let instrumentURL = NSURL.fileURLWithPath(instrumentPath)
@@ -45,15 +39,6 @@ public class SamplerNode: Node {
             bankMSB:        UInt8(kAUSampler_DefaultMelodicBankMSB),
             bankLSB:        UInt8(kAUSampler_DefaultBankLSB),
             presetID:       0)
-
-        let status = AudioUnitSetProperty(
-            audioUnit,
-            kAUSamplerProperty_LoadInstrument,
-            kAudioUnitScope_Global,
-            0,
-            &instrumentData,
-            UInt32(sizeof(instrumentData.dynamicType)))
-
-        checkStatus(status)
+        checkStatus(AudioUnitSetProperty(audioUnit, kAUSamplerProperty_LoadInstrument, kAudioUnitScope_Global, 0, &instrumentData, UInt32(sizeof(instrumentData.dynamicType))))
     }
 }

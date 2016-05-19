@@ -9,7 +9,6 @@ import AudioToolbox
 public class MixerNode: Node {
     public var audioUnit: AudioUnit = nil {
         didSet {
-            guard audioUnit != nil else { return }
             setup()
         }
     }
@@ -20,12 +19,7 @@ public class MixerNode: Node {
     var inputs = [Node?]()
 
     public init() {
-        cd = AudioComponentDescription(
-            componentType:         kAudioUnitType_Mixer,
-            componentSubType:      kAudioUnitSubType_MultiChannelMixer,
-            componentManufacturer: kAudioUnitManufacturer_Apple,
-            componentFlags:        0,
-            componentFlagsMask:    0)
+        cd = AudioComponentDescription(manufacturer: kAudioUnitManufacturer_Apple, type: kAudioUnitType_Mixer, subType: kAudioUnitSubType_MultiChannelMixer)
     }
 
     public func addInput(node: Node) -> UInt32 {
@@ -51,6 +45,8 @@ public class MixerNode: Node {
     }
 
     func setup() {
+        guard audioUnit != nil else { return }
+
         var numInputs: UInt32 = 0
         var numInputsSize = UInt32(sizeof(numInputs.dynamicType))
         checkStatus(AudioUnitGetProperty(audioUnit, kAudioUnitProperty_ElementCount, kAudioUnitScope_Input, 0, &numInputs, &numInputsSize))

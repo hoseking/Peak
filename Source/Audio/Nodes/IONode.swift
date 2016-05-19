@@ -17,12 +17,6 @@ public class IONode: Node {
     #else
         let audioUnitSubType = kAudioUnitSubType_VoiceProcessingIO
     #endif
-
-        cd = AudioComponentDescription(
-            componentType:         kAudioUnitType_Output,
-            componentSubType:      audioUnitSubType,
-            componentManufacturer: kAudioUnitManufacturer_Apple,
-            componentFlags:        0,
-            componentFlagsMask:    0)
+        cd = AudioComponentDescription(manufacturer: kAudioUnitManufacturer_Apple, type: kAudioUnitType_Output, subType: audioUnitSubType)
     }
 }
