@@ -28,7 +28,7 @@ class ViewController: UIViewController {
             Channel(nodes: [SamplerNode()])
         ]
 
-        graph = Graph()
+        graph = Graph(inputEnabled: true)
         graph.add(channels[0])
         graph.add(channels[1])
         graph.start()

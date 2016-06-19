@@ -60,7 +60,7 @@ public class Graph {
         }
     }
 
-    public var inputEnabled = true {
+    public var inputEnabled: Bool {
         didSet {
             performUpdate(setup)
         }
@@ -68,8 +68,9 @@ public class Graph {
 
     public var inputAvailable: (Int -> ())?
 
-    public init() {
-        buffer = Buffer(capacity: 8192)
+    public init(inputEnabled: Bool) {
+        self.inputEnabled = inputEnabled
+        self.buffer = Buffer(capacity: 8192)
 
         checkStatus(NewAUGraph(&graph))
         checkStatus(AUGraphOpen(graph))
