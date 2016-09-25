@@ -7,14 +7,14 @@
 import AudioToolbox
 import Foundation
 
-extension CollectionType where Index : Comparable {
-    func at(index: Index) -> Generator.Element? {
+extension Collection where Index : Comparable {
+    func at(_ index: Index) -> Iterator.Element? {
         guard index >= startIndex && index < endIndex else { return nil }
         return self[index]
     }
     
-    func at(@noescape predicate: Generator.Element -> Bool) -> Generator.Element? {
-        if let index = indexOf(predicate) {
+    func at(_ predicate: (Iterator.Element) -> Bool) -> Iterator.Element? {
+        if let index = index(where: predicate) {
             return self[index]
         }
         return nil
@@ -22,7 +22,7 @@ extension CollectionType where Index : Comparable {
 }
 
 public extension ScheduledAudioFileRegion {
-    init(mTimeStamp: AudioTimeStamp, mCompletionProc: ScheduledAudioFileRegionCompletionProc?, mCompletionProcUserData: UnsafeMutablePointer<Void>, mAudioFile: COpaquePointer, mLoopCount: UInt32, mStartFrame: Int64, mFramesToPlay: UInt32) {
+    init(mTimeStamp: AudioTimeStamp, mCompletionProc: ScheduledAudioFileRegionCompletionProc?, mCompletionProcUserData: UnsafeMutableRawPointer, mAudioFile: OpaquePointer, mLoopCount: UInt32, mStartFrame: Int64, mFramesToPlay: UInt32) {
         self.mTimeStamp = mTimeStamp
         self.mCompletionProc = mCompletionProc
         self.mCompletionProcUserData = mCompletionProcUserData

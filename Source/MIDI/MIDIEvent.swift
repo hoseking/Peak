@@ -16,14 +16,14 @@ public struct MIDIEvent {
     public var type = MusicEventType()
 
     /// Pointer to event data
-    public var data: UnsafePointer<Void> = nil
+    public var data: UnsafeRawPointer? = nil
     
     /// Size of event data
     public var dataSize = UInt32()
 
     public init() {}
 
-    public init(timeStamp: MusicTimeStamp, type: MusicEventType, data: UnsafePointer<Void>, dataSize: UInt32) {
+    public init(timeStamp: MusicTimeStamp, type: MusicEventType, data: UnsafeRawPointer, dataSize: UInt32) {
         self.timeStamp = timeStamp
         self.type = type
         self.data = data

@@ -7,13 +7,13 @@
 import Foundation
 import AudioToolbox
 
-public class MIDIFile {
-    public private(set) var sequence: MusicSequence = nil
-    public private(set) var tracks = [MusicTrack]()
+open class MIDIFile {
+    open fileprivate(set) var sequence: MusicSequence? = nil
+    open fileprivate(set) var tracks = [MusicTrack]()
 
-    public static func create(outFilePath: String, sequence: MusicSequence) -> MIDIFile? {
-        let url = NSURL.fileURLWithPath(outFilePath)
-        guard MusicSequenceFileCreate(sequence, url, .MIDIType, .EraseFile, 0) == noErr else {
+    open static func create(_ outFilePath: String, sequence: MusicSequence) -> MIDIFile? {
+        let url = URL(fileURLWithPath: outFilePath)
+        guard MusicSequenceFileCreate(sequence, url as CFURL, .midiType, .eraseFile, 0) == noErr else {
             return nil
         }
 
@@ -26,8 +26,8 @@ public class MIDIFile {
             return nil
         }
 
-        let url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, filePath, .CFURLPOSIXPathStyle, false)
-        guard MusicSequenceFileLoad(sequence, url, .MIDIType, .SMF_PreserveTracks) == noErr else {
+        let url = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, filePath as CFString!, .cfurlposixPathStyle, false)
+        guard MusicSequenceFileLoad(sequence!, url!, .midiType, MusicSequenceLoadFlags()) == noErr else {
             return nil
         }
 
@@ -35,55 +35,57 @@ public class MIDIFile {
     }
 
     deinit {
-        DisposeMusicSequence(sequence)
+        DisposeMusicSequence(sequence!)
     }
 
-    private func compileTracks() {
+    fileprivate func compileTracks() {
         var trackCount = UInt32()
-        guard MusicSequenceGetTrackCount(sequence, &trackCount) == noErr else {
+        guard MusicSequenceGetTrackCount(sequence!, &trackCount) == noErr else {
             fatalError("Could not get track count from midi file.")
         }
         
         for trackIndex in 0..<trackCount {
-            var track: MusicTrack = nil
-            guard MusicSequenceGetIndTrack(sequence, trackIndex, &track) == noErr else {
+            var track: MusicTrack? = nil
+            guard MusicSequenceGetIndTrack(sequence!, trackIndex, &track) == noErr else {
                 fatalError("Could not retrieve track \(trackIndex) from midi file.")
             }
-            tracks.append(track)
+            tracks.append(track!)
         }
     }
 
     /// Convert from a beats time stamp value to a time in seconds
-    public func secondsForBeats(beats: MusicTimeStamp) -> Double {
+    open func secondsForBeats(_ beats: MusicTimeStamp) -> Double {
         var seconds = Float64()
-        MusicSequenceGetSecondsForBeats(sequence, beats, &seconds)
+        MusicSequenceGetSecondsForBeats(sequence!, beats, &seconds)
         return Double(seconds)
     }
 
     /// Convert from a time in seconds to a beats time stamp
-    public func beatsForSeconds(seconds: Double) -> MusicTimeStamp {
+    open func beatsForSeconds(_ seconds: Double) -> MusicTimeStamp {
         var beats = MusicTimeStamp()
-        MusicSequenceGetBeatsForSeconds(sequence, seconds, &beats)
+        MusicSequenceGetBeatsForSeconds(sequence!, seconds, &beats)
         return beats
     }
 
     /// The collection of tempo events
-    public var tempoEvents: [MIDITempoEvent] {
-        var track: MusicTrack = nil
-        guard MusicSequenceGetTempoTrack(sequence, &track) == noErr else {
+    open var tempoEvents: [MIDITempoEvent] {
+        var track: MusicTrack? = nil
+        guard MusicSequenceGetTempoTrack(sequence!, &track) == noErr else {
             return []
         }
 
         var tempoEvents = [MIDITempoEvent]()
-        for event in track {
-            guard event.type == kMusicEventType_ExtendedTempo else {
+        for event in track! {
+            guard
+                event.type == kMusicEventType_ExtendedTempo,
+                let message = event.data?.assumingMemoryBound(to: ExtendedTempoEvent.self)
+            else {
                 continue
             }
 
-            let message = UnsafeMutablePointer<ExtendedTempoEvent>(event.data)
             let event = MIDITempoEvent(
                 timeStamp: event.timeStamp,
-                bpm: message.memory.bpm
+                bpm: message.pointee.bpm
             )
             tempoEvents.append(event)
         }
@@ -91,30 +93,32 @@ public class MIDIFile {
     }
 
     /// The collection of all note events in the file sorted by timestamp
-    public var noteEvents: [MIDINoteEvent] {
+    open var noteEvents: [MIDINoteEvent] {
         var events = [MIDINoteEvent]()
         for track in tracks {
-            events.appendContentsOf(noteEventsInTrack(track))
+            events.append(contentsOf: noteEventsInTrack(track))
         }
-        events.sortInPlace{ $0.timeStamp < $1.timeStamp }
+        events.sort{ $0.timeStamp < $1.timeStamp }
         return events
     }
 
     /// The collection of note events in a particular track
-    public func noteEventsInTrack(track: MusicTrack) -> [MIDINoteEvent] {
+    open func noteEventsInTrack(_ track: MusicTrack) -> [MIDINoteEvent] {
         var noteEvents = [MIDINoteEvent]()
         for event in track {
-            guard event.type == kMusicEventType_MIDINoteMessage else {
+            guard
+                event.type == kMusicEventType_MIDINoteMessage,
+                let message = event.data?.assumingMemoryBound(to: MIDINoteMessage.self)
+            else {
                 continue
             }
 
-            let message = UnsafeMutablePointer<MIDINoteMessage>(event.data)
             let event = MIDINoteEvent(
                 timeStamp: event.timeStamp,
-                duration: message.memory.duration,
-                channel: message.memory.channel,
-                note: message.memory.note,
-                velocity: message.memory.velocity
+                duration: message.pointee.duration,
+                channel: message.pointee.channel,
+                note: message.pointee.note,
+                velocity: message.pointee.velocity
             )
             noteEvents.append(event)
         }

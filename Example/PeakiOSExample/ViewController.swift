@@ -12,9 +12,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var waveformView: WaveformView!
     @IBOutlet var channelControlViews: [UIView]!
 
-    private var inputBuffer: Buffer!
-    private var waveformBuffer: Buffer!
-    private let waveformDuration: NSTimeInterval = 5
+    fileprivate var inputBuffer: Buffer!
+    fileprivate var waveformBuffer: Buffer!
+    fileprivate let waveformDuration: TimeInterval = 5
 
     var graph: Graph!
     var mixer: MixerNode!
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         inputBuffer = Buffer(capacity: Int(Double(graph.sampleRate) * waveformDuration))
     }
 
-    private func step(availableCount: Int) {
+    fileprivate func step(_ availableCount: Int) {
         precondition(availableCount <= inputBuffer.capacity)
 
         // Rotate the buffer
@@ -48,20 +48,20 @@ class ViewController: UIViewController {
             let neededSpace = availableCount - (inputBuffer.capacity - inputBuffer.count)
             let reusedSpace = max(0, inputBuffer.count - neededSpace)
             inputBuffer.withUnsafeMutableBufferPointer { pointer in
-                pointer.baseAddress.assignFrom(pointer.baseAddress + neededSpace, count: reusedSpace)
+                pointer.baseAddress?.assign(from: pointer.baseAddress! + neededSpace, count: reusedSpace)
             }
             inputBuffer.count = reusedSpace
         }
 
         // Fill buffer with data
         inputBuffer.withUnsafeMutableBufferPointer { pointer in
-            inputBuffer.count += graph.renderInput(pointer.baseAddress + inputBuffer.count, count: availableCount)
+            inputBuffer.count += graph.renderInput(pointer.baseAddress! + inputBuffer.count, count: availableCount)
         }
         assert(inputBuffer.count <= inputBuffer.capacity)
 
         // Update waveform view
         waveformBuffer = inputBuffer.copy()
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.waveformView.setSamples(self.waveformBuffer)
         }
     }
@@ -69,56 +69,56 @@ class ViewController: UIViewController {
 
     // MARK: Channel Config
 
-    @IBAction func addChannel(sender: UIButton) {
+    @IBAction func addChannel(_ sender: UIButton) {
         let channel = channels[sender.tag]
         graph.add(channel)
 
         let controlView = channelControlViews[sender.tag]
         controlView.alpha = 1.0
-        controlView.userInteractionEnabled = true
+        controlView.isUserInteractionEnabled = true
     }
 
-    @IBAction func removeChannel(sender: UIButton) {
+    @IBAction func removeChannel(_ sender: UIButton) {
         let channel = channels[sender.tag]
         graph.remove(channel)
 
         let controlView = channelControlViews[sender.tag]
         controlView.alpha = 0.2
-        controlView.userInteractionEnabled = false
+        controlView.isUserInteractionEnabled = false
     }
 
 
     // MARK: Channel Controls
 
-    @IBAction func channelStart(sender: UIButton) {
+    @IBAction func channelStart(_ sender: UIButton) {
         let channel = channels[sender.tag]
         let note = 0x30 + UInt32(sender.tag) * 0x10
         MusicDeviceMIDIEvent(channel.audioUnit!, 0x90, note, 0x7f, 0);
     }
 
-    @IBAction func channelStop(sender: UIButton) {
+    @IBAction func channelStop(_ sender: UIButton) {
         let channel = channels[sender.tag]
         let note = 0x30 + UInt32(sender.tag) * 0x10
         MusicDeviceMIDIEvent(channel.audioUnit!, 0x80, note, 0x00, 0);
     }
 
-    @IBAction func channelLevel(sender: UISlider) {
+    @IBAction func channelLevel(_ sender: UISlider) {
         let channel = channels[sender.tag]
         let value = AudioUnitParameterValue(sender.value)
-        channel.setParam(.Level, value: value)
+        channel.setParam(.level, value: value)
     }
 
-    @IBAction func channelEnabled(sender: UISwitch) {
+    @IBAction func channelEnabled(_ sender: UISwitch) {
         let channel = channels[sender.tag]
-        let value = AudioUnitParameterValue(sender.on)
-        channel.setParam(.Enabled, value: value)
+        let value = AudioUnitParameterValue(sender.isOn ? 1 : 0)
+        channel.setParam(.enabled, value: value)
     }
 
 
     // MARK: IO Node
 
-    @IBAction func inputEnabled(sender: UISwitch) {
-        graph.inputEnabled = sender.on
+    @IBAction func inputEnabled(_ sender: UISwitch) {
+        graph.inputEnabled = sender.isOn
     }
 }
 

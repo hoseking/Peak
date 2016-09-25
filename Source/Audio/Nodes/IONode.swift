@@ -6,10 +6,10 @@
 
 import AudioToolbox
 
-public class IONode: Node {
-    public var audioUnit: AudioUnit = nil
-    public var audioNode: AUNode = 0
-    public var cd: AudioComponentDescription
+open class IONode: Node {
+    open var audioUnit: AudioUnit? = nil
+    open var audioNode: AUNode = 0
+    open var cd: AudioComponentDescription
 
     public init() {
     #if os(iOS)

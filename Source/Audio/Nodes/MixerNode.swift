@@ -6,14 +6,14 @@
 
 import AudioToolbox
 
-public class MixerNode: Node {
-    public var audioUnit: AudioUnit = nil {
+open class MixerNode: Node {
+    open var audioUnit: AudioUnit? = nil {
         didSet {
             setup()
         }
     }
-    public var audioNode: AUNode = 0
-    public var cd: AudioComponentDescription
+    open var audioNode: AUNode = 0
+    open var cd: AudioComponentDescription
 
     var maxInputs = 0
     var inputs = [Node?]()
@@ -22,7 +22,7 @@ public class MixerNode: Node {
         cd = AudioComponentDescription(manufacturer: kAudioUnitManufacturer_Apple, type: kAudioUnitType_Mixer, subType: kAudioUnitSubType_MultiChannelMixer)
     }
 
-    public func addInput(node: Node) -> UInt32 {
+    open func addInput(_ node: Node) -> UInt32 {
         let bus = nextInputBus()
         precondition(inputs[bus] == nil)
         inputs[bus] = node
@@ -30,8 +30,8 @@ public class MixerNode: Node {
         return UInt32(bus)
     }
 
-    public func removeInput(node: Node) {
-        guard let index = inputs.indexOf({ $0?.audioNode == node.audioNode }) else { return }
+    open func removeInput(_ node: Node) {
+        guard let index = inputs.index(where: { $0?.audioNode == node.audioNode }) else { return }
         inputs[index] = nil
     }
 
@@ -45,10 +45,10 @@ public class MixerNode: Node {
     }
 
     func setup() {
-        guard audioUnit != nil else { return }
+        guard let audioUnit = audioUnit else { return }
 
         var numInputs: UInt32 = 0
-        var numInputsSize = UInt32(sizeof(numInputs.dynamicType))
+        var numInputsSize = UInt32(MemoryLayout<UInt32>.size)
         checkStatus(AudioUnitGetProperty(audioUnit, kAudioUnitProperty_ElementCount, kAudioUnitScope_Input, 0, &numInputs, &numInputsSize))
         maxInputs = Int(numInputs)
         for _ in 0..<numInputs {

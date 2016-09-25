@@ -7,7 +7,7 @@
 import AudioToolbox
 
 public protocol Node {
-    var audioUnit: AudioUnit { get set }
+    var audioUnit: AudioUnit? { get set }
     var audioNode: AUNode { get set }
     var cd: AudioComponentDescription { get set }
 }

@@ -12,14 +12,14 @@ import Peak
   A UIView that displays waveform samples. It uses RMS (root mean square) to combine multiple samples into an
   individual pixel.
 */
-public class WaveformView: UIScrollView {
-    @IBInspectable var lineColor: UIColor? = UIColor.blueColor()
-    @IBInspectable var markerColor: UIColor? = UIColor.redColor()
+open class WaveformView: UIScrollView {
+    @IBInspectable var lineColor: UIColor? = UIColor.blue
+    @IBInspectable var markerColor: UIColor? = UIColor.red
 
     var lineWidth: CGFloat = 1.0
 
-    private var samples: Buffer?
-    private var markIndex: Int = -1
+    fileprivate var samples: Buffer?
+    fileprivate var markIndex: Int = -1
 
     var sampleRate: Double = 44100
 
@@ -29,19 +29,19 @@ public class WaveformView: UIScrollView {
         }
     }
 
-    private var endFrame: Int {
+    fileprivate var endFrame: Int {
         get {
             return startFrame + Int(visibleDuration * Double(sampleRate))
         }
     }
 
-    var duration: NSTimeInterval {
+    var duration: TimeInterval {
         get {
-            return NSTimeInterval(samples?.count ?? 0) / sampleRate
+            return TimeInterval(samples?.count ?? 0) / sampleRate
         }
     }
 
-    var visibleDuration: NSTimeInterval = 5 {
+    var visibleDuration: TimeInterval = 5 {
         didSet {
             setNeedsLayout()
         }
@@ -53,47 +53,47 @@ public class WaveformView: UIScrollView {
         }
     }
 
-    public func setSamples(samples: Buffer) {
+    open func setSamples(_ samples: Buffer) {
         self.samples = samples
         setNeedsLayout()
     }
 
-    public func mark(time time: NSTimeInterval) {
+    open func mark(time: TimeInterval) {
         markIndex = Int(time * sampleRate)
         setNeedsDisplay()
     }
 
-    override public func drawRect(rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
+    override open func draw(_ rect: CGRect) {
+        guard let context = UIGraphicsGetCurrentContext() else { return }
 
         backgroundColor?.setFill()
-        CGContextFillRect(context, rect)
+        context.fill(rect)
 
         lineColor?.setFill()
         lineColor?.setStroke()
-        CGContextSetLineWidth(context, lineWidth)
+        context.setLineWidth(lineWidth)
 
-        let path = createPath()
+        guard let path = createPath() else { return }
 
         // Draw top
-        CGContextAddPath(context, path)
-        CGContextFillPath(context)
+        context.addPath(path)
+        context.fillPath()
 
         // Draw bottom
-        CGContextSaveGState(context)
-        CGContextTranslateCTM(context, 0, bounds.size.height)
-        CGContextScaleCTM(context, 1, -1)
-        CGContextAddPath(context, path)
-        CGContextFillPath(context)
-        CGContextRestoreGState(context)
+        context.saveGState()
+        context.translateBy(x: 0, y: bounds.size.height)
+        context.scaleBy(x: 1, y: -1)
+        context.addPath(path)
+        context.fillPath()
+        context.restoreGState()
 
         // Draw marker
         markerColor?.setFill()
         let x = self.bounds.width * CGFloat(markIndex - startFrame) / CGFloat(endFrame - startFrame)
-        CGContextFillRect(context, CGRect(x: x - 0.5, y: 0, width: 1, height: self.bounds.height))
+        context.fill(CGRect(x: x - 0.5, y: 0, width: 1, height: self.bounds.height))
     }
 
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         contentInset.top = 0
         contentSize.height = bounds.height
         contentSize.width = CGFloat(samples?.count ?? 0) / samplesPerPoint
@@ -101,32 +101,35 @@ public class WaveformView: UIScrollView {
         setNeedsDisplay()
     }
 
-    private func createPath() -> CGPath? {
+    fileprivate func createPath() -> CGPath? {
         guard let samples = samples else { return nil }
 
         let height = bounds.size.height
         let pixelSize = 1.0 / contentScaleFactor
         let samplesPerPixel = Int(ceil(samplesPerPoint * pixelSize))
 
-        var point = CGPointMake(max(bounds.minX, 0), height/2);
+        var point = CGPoint(x: max(bounds.minX, 0), y: height/2);
 
-        let path = CGPathCreateMutable()
-        CGPathMoveToPoint(path, nil, point.x, point.y)
+        let path = CGMutablePath()
+        path.move(to: point)
 
-        for var sampleIndex = startFrame; sampleIndex < samples.count && sampleIndex < endFrame; sampleIndex += samplesPerPixel {
+        for sampleIndex in stride(from: startFrame, to: endFrame, by: samplesPerPixel) {
+            if sampleIndex >= samples.count {
+                break
+            }
             // Get the RMS value for the current pixel
             let size = vDSP_Length(min(samplesPerPixel, samples.count - sampleIndex))
             var value: Double = 0.0
             samples.withUnsafeBufferPointer { pointer in
-                vDSP_rmsqvD(pointer.baseAddress + sampleIndex, 1, &value, size)
+                vDSP_rmsqvD(pointer.baseAddress! + sampleIndex, 1, &value, size)
             }
 
             point.x += pixelSize;
             point.y = height/2 - CGFloat(value) * height/2;
-            CGPathAddLineToPoint(path, nil, point.x, point.y)
+            path.addLine(to: point)
         }
-        CGPathAddLineToPoint(path, nil, point.x, height/2)
-        CGPathCloseSubpath(path)
+        path.addLine(to: CGPoint(x: point.x, y: height/2))
+        path.closeSubpath()
         return path
     }
 }

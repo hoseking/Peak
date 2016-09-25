@@ -10,7 +10,7 @@ import XCTest
 class PeakTests: XCTestCase {
 
     func testLoadWave() {
-        let bundlePath = NSBundle(forClass: PeakTests.self).pathForResource("sin_1000Hz_-3dBFS_1s", ofType: "wav")
+        let bundlePath = Bundle(for: PeakTests.self).path(forResource: "sin_1000Hz_-3dBFS_1s", ofType: "wav")
         guard let path = bundlePath else {
             XCTFail("Could not find wave file")
             return
@@ -30,14 +30,14 @@ class PeakTests: XCTestCase {
         XCTAssertEqual(audioFile.currentFrame, 0)
 
         let readLength = 1024
-        var data = [Double](count: readLength, repeatedValue: 0.0)
+        var data = [Double](repeating: 0.0, count: readLength)
         let actualLength = audioFile.readFrames(&data, count: readLength)
         XCTAssertEqual(actualLength, readLength)
         XCTAssertEqual(audioFile.currentFrame, readLength)
     }
 
     func testCreateLossless() {
-        let fileName = NSProcessInfo.processInfo().globallyUniqueString + ".m4a"
+        let fileName = ProcessInfo.processInfo.globallyUniqueString + ".m4a"
         let path = NSTemporaryDirectory() + "/" + fileName
 
         guard let audioFile = AudioFile.createLossless(path, sampleRate: 44100, overwrite: true) else {
@@ -47,12 +47,12 @@ class PeakTests: XCTestCase {
 
         XCTAssertEqual(audioFile.sampleRate, 44100)
 
-        let data = [Double](count: 1024, repeatedValue: 0.0)
+        let data = [Double](repeating: 0.0, count: 1024)
         XCTAssert(audioFile.writeFrames(data, count: 1024))
     }
 
     func testReadMIDI() {
-        let bundlePath = NSBundle(forClass: PeakTests.self).pathForResource("alb_esp1", ofType: "mid")
+        let bundlePath = Bundle(for: PeakTests.self).path(forResource: "alb_esp1", ofType: "mid")
         guard let path = bundlePath else {
             XCTFail("Could not find midi file")
             return

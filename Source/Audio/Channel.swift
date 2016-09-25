@@ -6,15 +6,15 @@
 
 import AudioToolbox
 
-public class Channel {
+open class Channel {
     public enum Param: AudioUnitParameterID {
-        case Level
-        case Enabled
+        case level
+        case enabled
 
         func value() -> AudioUnitParameterID {
             switch self {
-            case .Level: return kMultiChannelMixerParam_Volume
-            case .Enabled: return kMultiChannelMixerParam_Enable
+            case .level: return kMultiChannelMixerParam_Volume
+            case .enabled: return kMultiChannelMixerParam_Enable
             }
         }
     }
@@ -22,7 +22,7 @@ public class Channel {
     var nodes = [Node]()
     let mixer = MixerNode()
 
-    public var audioUnit: AudioUnit? {
+    open var audioUnit: AudioUnit? {
         return nodes.first?.audioUnit
     }
 
@@ -31,13 +31,13 @@ public class Channel {
         self.nodes.append(mixer)
     }
 
-    public func setParam(param: Param, value: AudioUnitParameterValue) {
-        checkStatus(AudioUnitSetParameter(mixer.audioUnit, param.value(), kAudioUnitScope_Input, 0, value, 0))
+    open func setParam(_ param: Param, value: AudioUnitParameterValue) {
+        checkStatus(AudioUnitSetParameter(mixer.audioUnit!, param.value(), kAudioUnitScope_Input, 0, value, 0))
     }
 
-    public func getParam(param: Param) -> AudioUnitParameterValue {
+    open func getParam(_ param: Param) -> AudioUnitParameterValue {
         var value: AudioUnitParameterValue = 0
-        checkStatus(AudioUnitGetParameter(mixer.audioUnit, param.value(), kAudioUnitScope_Input, 0, &value))
+        checkStatus(AudioUnitGetParameter(mixer.audioUnit!, param.value(), kAudioUnitScope_Input, 0, &value))
         return value
     }
 }

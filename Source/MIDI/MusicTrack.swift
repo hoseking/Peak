@@ -7,18 +7,18 @@
 import Foundation
 import AudioToolbox
 
-extension MusicTrack : SequenceType {
-    public typealias Generator = MusicTrackGenerator
+extension MusicTrack : Sequence {
+    public typealias Iterator = MusicTrackGenerator
     
-    public func generate() -> MusicTrackGenerator {
+    public func makeIterator() -> MusicTrackGenerator {
         return MusicTrackGenerator(track: self)
     }
 }
 
-public class MusicTrackGenerator : GeneratorType {
+open class MusicTrackGenerator : IteratorProtocol {
     public typealias Element = MIDIEvent
     
-    var iterator: MusicEventIterator = nil
+    var iterator: MusicEventIterator? = nil
     
     init(track: MusicTrack) {
         guard NewMusicEventIterator(track, &iterator) == noErr else {
@@ -27,28 +27,28 @@ public class MusicTrackGenerator : GeneratorType {
     }
 
     deinit {
-        DisposeMusicEventIterator(iterator)
+        DisposeMusicEventIterator(iterator!)
     }
     
     var hasEvent: Bool {
         var hasEvent = DarwinBoolean(false)
-        guard MusicEventIteratorHasCurrentEvent(iterator, &hasEvent) == noErr else {
+        guard MusicEventIteratorHasCurrentEvent(iterator!, &hasEvent) == noErr else {
             return false
         }
-        return Bool(hasEvent)
+        return hasEvent.boolValue
     }
     
-    public func next() -> MIDIEvent? {
+    open func next() -> MIDIEvent? {
         guard hasEvent else {
             return nil
         }
         
         var event = MIDIEvent()
-        guard MusicEventIteratorGetEventInfo(iterator, &event.timeStamp, &event.type, &event.data, &event.dataSize) == noErr else {
+        guard MusicEventIteratorGetEventInfo(iterator!, &event.timeStamp, &event.type, &event.data, &event.dataSize) == noErr else {
             return nil
         }
         
-        MusicEventIteratorNextEvent(iterator)
+        MusicEventIteratorNextEvent(iterator!)
         return event
     }
 }

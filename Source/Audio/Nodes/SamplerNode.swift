@@ -6,14 +6,14 @@
 
 import AudioToolbox
 
-public class SamplerNode: Node {
-    public var audioUnit: AudioUnit = nil {
+open class SamplerNode: Node {
+    open var audioUnit: AudioUnit? = nil {
         didSet {
             setup()
         }
     }
-    public var audioNode: AUNode = 0
-    public var cd: AudioComponentDescription
+    open var audioNode: AUNode = 0
+    open var cd: AudioComponentDescription
 
     var instrumentPath: String?
     var instrumentType: Int?
@@ -32,13 +32,13 @@ public class SamplerNode: Node {
         guard audioUnit != nil else { return }
         guard let instrumentPath = instrumentPath, let instrumentType = instrumentType else { return }
 
-        let instrumentURL = NSURL.fileURLWithPath(instrumentPath)
+        let instrumentURL = URL(fileURLWithPath: instrumentPath)
         var instrumentData = AUSamplerInstrumentData(
-            fileURL:        Unmanaged.passUnretained(instrumentURL),
+            fileURL:        Unmanaged.passUnretained(instrumentURL as CFURL),
             instrumentType: UInt8(instrumentType),
             bankMSB:        UInt8(kAUSampler_DefaultMelodicBankMSB),
             bankLSB:        UInt8(kAUSampler_DefaultBankLSB),
             presetID:       0)
-        checkStatus(AudioUnitSetProperty(audioUnit, kAUSamplerProperty_LoadInstrument, kAudioUnitScope_Global, 0, &instrumentData, UInt32(sizeof(instrumentData.dynamicType))))
+        checkStatus(AudioUnitSetProperty(audioUnit!, kAUSamplerProperty_LoadInstrument, kAudioUnitScope_Global, 0, &instrumentData, UInt32(MemoryLayout<AUSamplerInstrumentData>.size)))
     }
 }
