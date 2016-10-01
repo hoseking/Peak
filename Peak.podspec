@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Peak"
-  s.version      = "1.3.0"
+  s.version      = "2.0.0"
   s.summary      = "A collection of iOS and OS X audio tools, written in Swift."
   s.homepage     = "https://github.com/hoseking/Peak"
   s.license      = "MIT"
