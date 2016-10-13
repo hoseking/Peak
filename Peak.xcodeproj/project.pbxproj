@@ -35,8 +35,6 @@
 		004549B21BD0575500AC387F /* Peak.h in Headers */ = {isa = PBXBuildFile; fileRef = 004549B01BD0575500AC387F /* Peak.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		004549B41BD0576700AC387F /* PeakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004549B31BD0576700AC387F /* PeakTests.swift */; };
 		004549B51BD0576700AC387F /* PeakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004549B31BD0576700AC387F /* PeakTests.swift */; };
-		0077C6791C63D4B900AC71CA /* Peak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005809451BD04F2700B164F6 /* Peak.framework */; };
-		0077C67A1C63D4B900AC71CA /* Peak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 005809451BD04F2700B164F6 /* Peak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0077C6931C63D6EE00AC71CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077C68C1C63D6EE00AC71CA /* AppDelegate.swift */; };
 		0077C6941C63D6EE00AC71CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0077C68D1C63D6EE00AC71CA /* Main.storyboard */; };
 		0077C6981C63D6EE00AC71CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0077C6921C63D6EE00AC71CA /* ViewController.swift */; };
@@ -53,6 +51,8 @@
 		00EFE8E91BD1A83300FF769B /* sin_1000Hz_-3dBFS_1s.wav in Resources */ = {isa = PBXBuildFile; fileRef = 00EFE8E51BD1A81200FF769B /* sin_1000Hz_-3dBFS_1s.wav */; };
 		A99A67641D984B1300227144 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99A67631D984B1300227144 /* AudioToolbox.framework */; };
 		A99A67671D984B3600227144 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99A67661D984B3600227144 /* AudioUnit.framework */; };
+		A9E5EBD61DAF4E7F00ACE913 /* Peak.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 005809451BD04F2700B164F6 /* Peak.framework */; };
+		A9E5EBD71DAF4E7F00ACE913 /* Peak.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 005809451BD04F2700B164F6 /* Peak.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,14 +63,14 @@
 			remoteGlobalIDString = 0045498C1BD052B100AC387F;
 			remoteInfo = PeakOSX;
 		};
-		005809511BD04F2700B164F6 /* PBXContainerItemProxy */ = {
+		A9E5EBD31DAF4E3400ACE913 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0058093C1BD04F2700B164F6 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 005809441BD04F2700B164F6;
-			remoteInfo = Peak;
+			remoteInfo = PeakiOS;
 		};
-		0077C67B1C63D4B900AC71CA /* PBXContainerItemProxy */ = {
+		A9E5EBD81DAF4E7F00ACE913 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0058093C1BD04F2700B164F6 /* Project object */;
 			proxyType = 1;
@@ -80,13 +80,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		0077C67D1C63D4B900AC71CA /* Embed Frameworks */ = {
+		A9E5EBDA1DAF4E8000ACE913 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0077C67A1C63D4B900AC71CA /* Peak.framework in Embed Frameworks */,
+				A9E5EBD71DAF4E7F00ACE913 /* Peak.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,7 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				001A51601C6D0187008D498C /* AudioToolbox.framework in Frameworks */,
-				0077C6791C63D4B900AC71CA /* Peak.framework in Frameworks */,
+				A9E5EBD61DAF4E7F00ACE913 /* Peak.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,12 +419,12 @@
 				0077C6511C63D42200AC71CA /* Sources */,
 				0077C6521C63D42200AC71CA /* Frameworks */,
 				0077C6531C63D42200AC71CA /* Resources */,
-				0077C67D1C63D4B900AC71CA /* Embed Frameworks */,
+				A9E5EBDA1DAF4E8000ACE913 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				0077C67C1C63D4B900AC71CA /* PBXTargetDependency */,
+				A9E5EBD91DAF4E7F00ACE913 /* PBXTargetDependency */,
 			);
 			name = PeakiOSExample;
 			productName = PeakiOSExample;
@@ -606,12 +606,12 @@
 		005809521BD04F2700B164F6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 005809441BD04F2700B164F6 /* PeakiOS */;
-			targetProxy = 005809511BD04F2700B164F6 /* PBXContainerItemProxy */;
+			targetProxy = A9E5EBD31DAF4E3400ACE913 /* PBXContainerItemProxy */;
 		};
-		0077C67C1C63D4B900AC71CA /* PBXTargetDependency */ = {
+		A9E5EBD91DAF4E7F00ACE913 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 005809441BD04F2700B164F6 /* PeakiOS */;
-			targetProxy = 0077C67B1C63D4B900AC71CA /* PBXContainerItemProxy */;
+			targetProxy = A9E5EBD81DAF4E7F00ACE913 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
